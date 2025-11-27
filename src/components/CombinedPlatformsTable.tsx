@@ -86,7 +86,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
   return (
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
       <div className="mb-6">
-        <h3 className="text-white mb-2">Google Play va App Store Birgalikda Tahlil</h3>
+        <h3 className="text-white mb-2">Google Play va App Store yakuniy jadvali</h3>
         <p className="text-white text-sm">
           Ikkala platformadagi yakuniy ballning o'rtachasi - {sortedData.length} ta bank
         </p>
@@ -133,17 +133,17 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
               <TableHead className="text-white"></TableHead>
               
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="googlePlayScore" label="Ball" />
+                <SortButton field="googlePlayScore" label="Gorizantal ball" />
               </TableHead>
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="googlePlayRating" label="Reyting" />
+                <SortButton field="googlePlayRating" label="Google Play'dagi balli" />
               </TableHead>
               
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="appStoreScore" label="Ball" />
+                <SortButton field="appStoreScore" label="Gorizantal ball" />
               </TableHead>
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="appStoreRating" label="Reyting" />
+                <SortButton field="appStoreRating" label="App Store'dagi balli" />
               </TableHead>
               
               <TableHead className="text-white text-center">

@@ -101,7 +101,7 @@ export function BanksTable({ data }: BanksTableProps) {
                 <TableHead className="text-white text-center min-w-[140px]">
                   <SortButton
                     field="lastMonthDownloads"
-                    label={<span>Oxirgi oydagi<br/>yuklanishlar soni</span>}
+                    label={<span>Oxirgi oyda<br/>izoh berganlar soni</span>}
                   />
                 </TableHead>
                 <TableHead className="text-white text-center min-w-[140px]">
