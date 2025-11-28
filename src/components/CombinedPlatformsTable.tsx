@@ -96,7 +96,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
         <Table>
           <TableHeader className="backdrop-blur-xl bg-black/50">
             <TableRow className="border-white/20 hover:bg-transparent">
-              <TableHead className="text-white text-center w-16">#</TableHead>
+              <TableHead className="text-white text-center w-16">№</TableHead>
               <TableHead className="text-white min-w-[200px]">
                 <SortButton field="name" label="Bank nomi" />
               </TableHead>
@@ -133,17 +133,17 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
               <TableHead className="text-white"></TableHead>
               
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="googlePlayScore" label="Gorizantal ball" />
+                <SortButton field="googlePlayScore" label="Yakuniy ball" />
               </TableHead>
-              <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="googlePlayRating" label="Google Play'dagi balli" />
+              <TableHead className="text-white text-center min-w-[120px]">
+                <SortButton field="googlePlayRating" label="Google Play reytingi" />
               </TableHead>
               
               <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="appStoreScore" label="Gorizantal ball" />
+                <SortButton field="appStoreScore" label="Yakuniy ball" />
               </TableHead>
-              <TableHead className="text-white text-center min-w-[100px]">
-                <SortButton field="appStoreRating" label="App Store'dagi balli" />
+              <TableHead className="text-white text-center min-w-[120px]">
+                <SortButton field="appStoreRating" label="App Store reytingi" />
               </TableHead>
               
               <TableHead className="text-white text-center">
@@ -240,23 +240,35 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
       {/* Summary Statistics */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="backdrop-blur-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-400/30 rounded-xl p-4">
-          <p className="text-blue-300 text-sm mb-1">Google Play O'rtacha</p>
+          <p className="text-blue-300 text-sm mb-1">Google Playdagi o'rtacha ball</p>
           <p className="text-white text-2xl font-bold">
-            {(sortedData.reduce((sum, b) => sum + b.googlePlayScore, 0) / sortedData.length).toFixed(2)}
+            {(
+              sortedData.length > 0 
+                ? sortedData.reduce((sum, b) => sum + b.googlePlayScore, 0) / sortedData.length 
+                : 0
+            ).toFixed(2)}
           </p>
         </div>
         
         <div className="backdrop-blur-xl bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 border border-cyan-400/30 rounded-xl p-4">
-          <p className="text-cyan-300 text-sm mb-1">App Store O'rtacha</p>
+          <p className="text-cyan-300 text-sm mb-1">App Storedagi o'rtacha ball</p>
           <p className="text-white text-2xl font-bold">
-            {(sortedData.reduce((sum, b) => sum + b.appStoreScore, 0) / sortedData.length).toFixed(2)}
+            {(
+              sortedData.length > 0 
+                ? sortedData.reduce((sum, b) => sum + b.appStoreScore, 0) / sortedData.length 
+                : 0
+            ).toFixed(2)}
           </p>
         </div>
         
         <div className="backdrop-blur-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-400/30 rounded-xl p-4">
-          <p className="text-green-300 text-sm mb-1">Umumiy O'rtacha</p>
+          <p className="text-green-300 text-sm mb-1">Umumiy o'rtacha ball</p>
           <p className="text-white text-2xl font-bold">
-            {(sortedData.reduce((sum, b) => sum + b.averageScore, 0) / sortedData.length).toFixed(2)}
+            {(
+              sortedData.length > 0 
+                ? sortedData.reduce((sum, b) => sum + b.averageScore, 0) / sortedData.length 
+                : 0
+            ).toFixed(2)}
           </p>
         </div>
       </div>

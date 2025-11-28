@@ -33,8 +33,23 @@ export function BanksTable({ data }: BanksTableProps) {
       bank?.appName?.toLowerCase?.().includes(search.toLowerCase())
     )
     .sort((a, b) => {
-      const aValue = (a as any)?.[sortBy];
-      const bValue = (b as any)?.[sortBy];
+      // Maxsus holatlar uchun moslashtirilgan sort qiymatlari
+      let aValue: any;
+      let bValue: any;
+
+      if (sortBy === 'appLabel') {
+        aValue = (a as any)?.appId ?? (a as any)?.appName ?? '';
+        bValue = (b as any)?.appId ?? (b as any)?.appName ?? '';
+      } else if (sortBy === 'verticalScorePercent') {
+        aValue = (a as any)?.verticalScorePercent;
+        bValue = (b as any)?.verticalScorePercent;
+      } else if (sortBy === 'horizontalScore') {
+        aValue = (a as any)?.horizontalScore;
+        bValue = (b as any)?.horizontalScore;
+      } else {
+        aValue = (a as any)?.[sortBy];
+        bValue = (b as any)?.[sortBy];
+      }
 
       if (typeof aValue === 'number' && typeof bValue === 'number') {
         return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
@@ -68,53 +83,53 @@ export function BanksTable({ data }: BanksTableProps) {
         </div>
         <div className="relative w-full md:w-auto">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300" />
-          <Input
+          <Input 
             placeholder="Bank, ilova yoki kategoriya bo'yicha qidirish..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-white/5 border-white/20 text-white placeholder:text-gray-300 min-w-[350px]"
+            className="pl-10 bg-white/5 border-white/20 text-white placeholder:text-gray-300 w-full md:min-w-[350px]"
           />
         </div>
       </div>
 
-      <ScrollArea className="h-[700px] rounded-xl">
+      <ScrollArea className="h-[60vh] md:h-[700px] rounded-xl">
         <div className="overflow-x-auto">
-          <Table>
+          <Table className="min-w-[1400px] md:min-w-[1800px] lg:min-w-[2200px] whitespace-nowrap">
             <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/50 z-10">
               <TableRow className="border-white/20 hover:bg-transparent">
-                <TableHead className="text-white text-center">#</TableHead>
-                <TableHead className="text-white min-w-[180px]">
+                <TableHead className="text-white text-center w-16 sticky left-0 z-20 bg-black/50 backdrop-blur-xl">№</TableHead>
+                <TableHead className="text-white min-w-[220px] sticky left-16 z-10 bg-black/50 backdrop-blur-xl">
                   <SortButton field="name" label="Bank nomi" />
                 </TableHead>
-                <TableHead className="text-white min-w-[140px]">
-                  <SortButton field="category" label="Kategoriya" />
+                <TableHead className="text-white min-w-[200px]">
+                  <SortButton field="appLabel" label="Ilova nomi" />
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[120px]">
+                <TableHead className="text-white text-center min-w-[120px] hidden md:table-cell">
                  <SortButton field="totalRaters" label={<span>Baho berganlar<br/>soni</span>} />
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[140px]">
+                <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
                   <SortButton
                     field="volumeValue"
                     label={<span>Oxirgi oyda<br/>yuklab olishlar soni</span>}
                   />
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[140px]">
+                <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
                   <SortButton
                     field="lastMonthDownloads"
                     label={<span>Oxirgi oyda<br/>izoh berganlar soni</span>}
                   />
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[140px]">
+                <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
                   <SortButton
                     field="lastMonthRaters"
                     label={<span>Oylik<br/>baholovchilar soni</span>}
                   />
                 </TableHead>
                   <TableHead className="text-white text-center min-w-[100px]">
-                  <SortButton field="averageRating" label={<span>Gorizontal<br/>ball</span>}/>
+                  <SortButton field="horizontalScore" label={<span>Gorizontal<br/>ball</span>}/>
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[100px]">
-                  <SortButton field="verticalScore" label={<span>Vertikal<br/>ball</span>} />
+                <TableHead className="text-white text-center min-w-[100px] hidden md:table-cell">
+                  <SortButton field="verticalScorePercent" label={<span>Vertikal<br/>ball</span>} />
                 </TableHead>
                 <TableHead className="text-white text-center min-w-[100px]">
                   <SortButton field="activityScore" label="Faollik" />
@@ -130,36 +145,23 @@ export function BanksTable({ data }: BanksTableProps) {
                   key={index}
                   className="border-white/10 hover:bg-gradient-to-r hover:from-white/5 hover:to-white/10 transition-all duration-300"
                 >
-                  <TableCell className="text-white text-center">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5">
+                  <TableCell className="text-white text-center w-16 sticky left-0 z-20 bg-black/30 backdrop-blur-xl">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 mx-auto">
                       {index + 1}
                     </div>
                   </TableCell>
-                  <TableCell className="text-white">{bank?.name ?? '-'}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant="outline"
-                      className={`${
-                        (bank?.category ?? "") === "Davlat banklari" 
-                          ? "bg-green-500/10 text-green-300 border-green-500/30"
-                          : (bank?.category ?? "") === "Xorijiy banklar"
-                          ? "bg-orange-500/10 text-orange-300 border-orange-500/30"
-                          : "bg-blue-500/10 text-blue-300 border-blue-500/30"
-                      }`}
-                    >
-                      {bank?.category ?? '-'}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-white text-center">
+                  <TableCell className="text-white sticky left-16 z-10 bg-black/30 backdrop-blur-xl">{bank?.name ?? '-'}</TableCell>
+                    <TableCell className="text-white text-sm text-gray-200">{bank.appId || bank.appName || '-'}</TableCell>
+                  <TableCell className="text-white text-center hidden md:table-cell">
                     {bank?.totalRaters?.toLocaleString?.() || '0'}
                   </TableCell>
-                  <TableCell className="text-white text-center">
+                  <TableCell className="text-white text-center hidden md:table-cell">
                     {typeof bank?.volumeValue === 'number' ? (bank.volumeValue * 1000000).toLocaleString() : '0'}
                   </TableCell>
-                  <TableCell className="text-white text-center">
+                  <TableCell className="text-white text-center hidden md:table-cell">
                     {bank?.lastMonthDownloads?.toLocaleString?.() || '0'}
                   </TableCell>
-                  <TableCell className="text-white text-center">
+                  <TableCell className="text-white text-center hidden md:table-cell">
                     {bank?.lastMonthRaters?.toLocaleString?.() || '0'}
                   </TableCell>
                     <TableCell className="text-center">
@@ -167,7 +169,7 @@ export function BanksTable({ data }: BanksTableProps) {
                       <span className="text-white">{typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(2) : '0.00'}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-white text-center">
+                  <TableCell className="text-white text-center hidden md:table-cell">
                      <div className="flex items-center justify-center gap-2">
                       <span className="text-white">{typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(2) : '0.00'}</span>
                     </div>

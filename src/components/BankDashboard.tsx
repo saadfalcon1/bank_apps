@@ -36,7 +36,8 @@ export function BankDashboard() {
     ? ["all", ...Array.from(new Set(currentData.map(b => b.category).filter(Boolean)))]
     : ["all"];
 
-  return (
+  // @ts-ignore
+    return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black p-4 md:p-8">
       <div className="max-w-[1800px] mx-auto space-y-6">
         {/* Header with 3D effect - Two clickable cards */}

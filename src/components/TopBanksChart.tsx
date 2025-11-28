@@ -31,7 +31,7 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
         <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
           <TrendingUp className="w-5 h-5 text-blue-400" />
         </div>
-        <h3 className="text-white">Top 15 Yuqori Reytingli Banklar</h3>
+        <h3 className="text-white">Yakuniy ball bo'yicha top 15 banklar</h3>
       </div>
       <ResponsiveContainer width="100%" height={500}>
         <BarChart data={topBanks} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
