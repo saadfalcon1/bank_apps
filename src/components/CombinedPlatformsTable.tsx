@@ -1,6 +1,7 @@
+
 import { Card } from "./ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import { Star, ArrowUpDown } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { useState } from "react";
 
@@ -12,11 +13,10 @@ interface CombinedPlatformsTableProps {
 interface CombinedBank {
   name: string;
   category: string;
+  appLabel: string;
   googlePlayScore: number;
   appStoreScore: number;
   averageScore: number;
-  googlePlayRating: number;
-  appStoreRating: number;
   googlePlayRaters: number;
   appStoreRaters: number;
 }
@@ -38,17 +38,16 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
   const combinedData: CombinedBank[] = [];
   
   googlePlayData.forEach(gpBank => {
-    const asBank = appStoreData.find(asb => asb.name === gpBank.name);
+    const asBank = appStoreData.find((asb: any) => asb.name === gpBank.name);
     
     if (asBank) {
       combinedData.push({
         name: gpBank.name,
         category: gpBank.category,
+        appLabel: gpBank.appId ?? asBank.appName ?? "",
         googlePlayScore: gpBank.finalScore,
         appStoreScore: asBank.finalScore,
         averageScore: (gpBank.finalScore + asBank.finalScore) / 2,
-        googlePlayRating: gpBank.averageRating,
-        appStoreRating: asBank.averageRating,
         googlePlayRaters: gpBank.totalRaters,
         appStoreRaters: asBank.totalRaters
       });
@@ -100,19 +99,22 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
               <TableHead className="text-white min-w-[200px]">
                 <SortButton field="name" label="Bank nomi" />
               </TableHead>
+              <TableHead className="text-white min-w-[200px]">
+                <SortButton field="appLabel" label="Ilova nomi" />
+              </TableHead>
               <TableHead className="text-white min-w-[140px]">
                 <SortButton field="category" label="Kategoriya" />
               </TableHead>
               
               {/* Google Play */}
-              <TableHead className="text-center" colSpan={2}>
+              <TableHead className="text-center" colSpan={1}>
                 <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-2 border border-blue-400/30">
                   <span className="text-blue-300 font-semibold">Google Play</span>
                 </div>
               </TableHead>
               
               {/* App Store */}
-              <TableHead className="text-center" colSpan={2}>
+              <TableHead className="text-center" colSpan={1}>
                 <div className="bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 rounded-lg p-2 border border-cyan-400/30">
                   <span className="text-cyan-300 font-semibold">App Store</span>
                 </div>
@@ -131,19 +133,12 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
               <TableHead className="text-white"></TableHead>
               <TableHead className="text-white"></TableHead>
               <TableHead className="text-white"></TableHead>
-              
-              <TableHead className="text-white text-center min-w-[100px]">
+              <TableHead className="text-white"></TableHead>
+              <TableHead className="text-white text-right min-w-[100px]">
                 <SortButton field="googlePlayScore" label="Yakuniy ball" />
               </TableHead>
-              <TableHead className="text-white text-center min-w-[120px]">
-                <SortButton field="googlePlayRating" label="Google Play reytingi" />
-              </TableHead>
-              
-              <TableHead className="text-white text-center min-w-[100px]">
+              <TableHead className="text-white text-right min-w-[100px]">
                 <SortButton field="appStoreScore" label="Yakuniy ball" />
-              </TableHead>
-              <TableHead className="text-white text-center min-w-[120px]">
-                <SortButton field="appStoreRating" label="App Store reytingi" />
               </TableHead>
               
               <TableHead className="text-white text-center">
@@ -165,6 +160,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                 </TableCell>
                 
                 <TableCell className="text-white font-medium">{bank.name}</TableCell>
+                <TableCell className="text-white text-sm">{bank.appLabel || '-'}</TableCell>
                 
                 <TableCell>
                   <Badge 
@@ -182,37 +178,21 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                 </TableCell>
                 
                 {/* Google Play Score */}
-                <TableCell className="text-center">
+                <TableCell className="text-right">
                   <Badge 
                     className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 border border-blue-400/30 backdrop-blur-xl"
                   >
-                    {bank.googlePlayScore.toFixed(2)}
+                    {bank.googlePlayScore.toFixed(1)}
                   </Badge>
-                </TableCell>
-                
-                {/* Google Play Rating */}
-                <TableCell className="text-center">
-                  <div className="flex items-center justify-center gap-1">
-                    <Star className="w-3 h-3 fill-blue-400 text-blue-400" />
-                    <span className="text-blue-200 text-sm">{bank.googlePlayRating.toFixed(2)}</span>
-                  </div>
                 </TableCell>
                 
                 {/* App Store Score */}
-                <TableCell className="text-center">
+                <TableCell className="text-right">
                   <Badge 
                     className="bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-200 border border-cyan-400/30 backdrop-blur-xl"
                   >
-                    {bank.appStoreScore.toFixed(2)}
+                    {bank.appStoreScore.toFixed(1)}
                   </Badge>
-                </TableCell>
-                
-                {/* App Store Rating */}
-                <TableCell className="text-center">
-                  <div className="flex items-center justify-center gap-1">
-                    <Star className="w-3 h-3 fill-cyan-400 text-cyan-400" />
-                    <span className="text-cyan-200 text-sm">{bank.appStoreRating.toFixed(2)}</span>
-                  </div>
                 </TableCell>
                 
                 {/* Average Score */}
@@ -228,7 +208,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                         : "bg-gradient-to-r from-orange-500/30 to-red-500/30 text-orange-200 border-orange-400/40"
                     } backdrop-blur-xl border text-lg font-bold`}
                   >
-                    {bank.averageScore.toFixed(2)}
+                    {bank.averageScore.toFixed(1)}
                   </Badge>
                 </TableCell>
               </TableRow>
@@ -237,41 +217,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
         </Table>
       </div>
       
-      {/* Summary Statistics */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="backdrop-blur-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-400/30 rounded-xl p-4">
-          <p className="text-blue-300 text-sm mb-1">Google Playdagi o'rtacha ball</p>
-          <p className="text-white text-2xl font-bold">
-            {(
-              sortedData.length > 0 
-                ? sortedData.reduce((sum, b) => sum + b.googlePlayScore, 0) / sortedData.length 
-                : 0
-            ).toFixed(2)}
-          </p>
-        </div>
-        
-        <div className="backdrop-blur-xl bg-gradient-to-br from-cyan-500/10 to-indigo-500/10 border border-cyan-400/30 rounded-xl p-4">
-          <p className="text-cyan-300 text-sm mb-1">App Storedagi o'rtacha ball</p>
-          <p className="text-white text-2xl font-bold">
-            {(
-              sortedData.length > 0 
-                ? sortedData.reduce((sum, b) => sum + b.appStoreScore, 0) / sortedData.length 
-                : 0
-            ).toFixed(2)}
-          </p>
-        </div>
-        
-        <div className="backdrop-blur-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-400/30 rounded-xl p-4">
-          <p className="text-green-300 text-sm mb-1">Umumiy o'rtacha ball</p>
-          <p className="text-white text-2xl font-bold">
-            {(
-              sortedData.length > 0 
-                ? sortedData.reduce((sum, b) => sum + b.averageScore, 0) / sortedData.length 
-                : 0
-            ).toFixed(2)}
-          </p>
-        </div>
-      </div>
+      {/* Summary Statistics removed as per requirements */}
     </Card>
   );
 }

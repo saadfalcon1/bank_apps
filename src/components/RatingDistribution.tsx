@@ -6,9 +6,11 @@ import { Star } from "lucide-react";
 interface RatingDistributionProps {
   data: BankData[];
   detailed?: boolean;
+  // Platformaga qarab sarlavhani moslashtirish uchun ixtiyoriy prop
+  platform?: "googlePlay" | "appStore";
 }
 
-export function RatingDistribution({ data, detailed = false }: RatingDistributionProps) {
+export function RatingDistribution({ data, detailed = false, platform }: RatingDistributionProps) {
   // Calculate total ratings distribution
   const totalRatings = data.reduce((acc, bank) => {
     // Handle both rating formats: ratings.five or rating5
@@ -27,11 +29,13 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
   }, { five: 0, four: 0, three: 0, two: 0, one: 0 });
 
   const pieData = [
-    { name: "5 yulduz", value: totalRatings.five, color: "#10b981" },
-    { name: "4 yulduz", value: totalRatings.four, color: "#3b82f6" },
-    { name: "3 yulduz", value: totalRatings.three, color: "#f59e0b" },
-    { name: "2 yulduz", value: totalRatings.two, color: "#ef4444" },
-    { name: "1 yulduz", value: totalRatings.one, color: "#991b1b" }
+    // Ranglar maksimal darajada farqli bo'lishi uchun yangilandi:
+    // 5⭐ → Yashil, 4⭐ → Siyan, 3⭐ → Sariq, 2⭐ → Binafsha, 1⭐ → Qizil
+    { name: "", value: totalRatings.five, color: "#16a34a" }, // green-600
+    { name: "", value: totalRatings.four, color: "#06b6d4" }, // cyan-500
+    { name: "", value: totalRatings.three, color: "#f59e0b" }, // amber-500
+    { name: "", value: totalRatings.two, color: "#a855f7" }, // purple-500
+    { name: "", value: totalRatings.one, color: "#ef4444" }  // red-500
   ];
 
   // Pre-compute total count to avoid repeated reductions and guard divide-by-zero
@@ -46,8 +50,13 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
       const fiveStarPercent = bank.totalRaters > 0 
         ? (five / bank.totalRaters) * 100 
         : 0;
+      // Diagrammada bank nomi emas, ilova nomi chiqishi uchun
+      const appTitle = (bank as any)?.appId ?? (bank as any)?.appName ?? bank.name;
       return {
-        name: bank.name.length > 15 ? bank.name.substring(0, 15) + "..." : bank.name,
+        // X o'qidagi label sifatida ilova nomini ko'rsatamiz
+        name: appTitle.length > 15 ? appTitle.substring(0, 15) + "..." : appTitle,
+        // Tooltip uchun qo'shimcha ma'lumot sifatida bank nomini ko'rsatamiz
+        appLabel: bank.name,
         yakuniyBall: bank.finalScore,
         reyting: bank.averageRating,
         percent: fiveStarPercent
@@ -55,6 +64,11 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
     });
 
   if (detailed) {
+    const platformTitle = platform === "appStore"
+      ? "App Storedagi reyting bahosi eng yuqori bo’lgan TOP-15 bank"
+      : platform === "googlePlay"
+      ? "Google Playdagi reyting bahosi eng yuqori bo’lgan TOP-15 bank"
+      : "O'rtacha bahosi eng yuqori Top 15 bank";
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
@@ -62,10 +76,10 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
             <div className="p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20">
               <Star className="w-5 h-5 text-green-400 fill-green-400" />
             </div>
-            <h3 className="text-white">O'rtacha bahosi eng yuqori Top 15 bank</h3>
+            <h3 className="text-white">{platformTitle}</h3>
           </div>
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={topRatedBanks} layout="horizontal" margin={{ top: 5, right: 30, left: 20, bottom: 80 }}>
+          <ResponsiveContainer width="100%" height={500}>
+            <BarChart data={topRatedBanks} layout="horizontal" margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
               <defs>
                 <linearGradient id="ratingGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
@@ -82,7 +96,8 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
               />
               <YAxis 
                 domain={[4.0, 5.0]}
-                tick={{ fill: '#e5e7eb' }}
+                tick={{ fill: '#e5e7eb', fontSize: 11 }}
+                tickFormatter={(v) => typeof v === 'number' ? v.toFixed(1) : v}
               />
               <Tooltip
                 contentStyle={{
@@ -92,8 +107,12 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
                 }}
                 labelStyle={{ color: '#fff' }}
                 itemStyle={{ color: '#fff' }}
+                labelFormatter={(label: any, payload: any[]) => {
+                  const app = payload && payload[0] && payload[0].payload ? payload[0].payload.appLabel : '';
+                  return app ? `${label} — ${app}` : label;
+                }}
                 formatter={(value: number, name: string, props: any) => [
-                  `${value.toFixed(2)} (${props.payload.percent.toFixed(1)}% 5⭐)`,
+                  `${value.toFixed(1)} (${props.payload.percent.toFixed(1)}% 5⭐)`,
                   "Reyting"
                 ]}
               />
@@ -111,7 +130,7 @@ export function RatingDistribution({ data, detailed = false }: RatingDistributio
         <div className="p-2 rounded-lg bg-gradient-to-br from-yellow-500/20 to-orange-500/20">
           <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
         </div>
-        <h3 className="text-white">Umumiy baho berganlar reyting taqsimoti</h3>
+        <h3 className="text-white">Jami baho bergan foydalanuvchilar taqsimoti</h3>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

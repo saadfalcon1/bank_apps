@@ -52,8 +52,9 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
             tick={{ fill: '#e5e7eb', fontSize: 11 }}
           />
           <YAxis 
-            tick={{ fill: '#e5e7eb' }}
-            label={{ value: 'Yakuniy ball', angle: -90, position: 'insideLeft', fill: '#e5e7eb' }}
+            tick={{ fill: '#e5e7eb', fontSize: 11 }}
+            tickFormatter={(v) => `${(typeof v === 'number' ? v.toFixed(1) : v)}%`}
+            label={{ value: 'Yakuniy ball (%)', angle: -90, position: 'insideLeft', fill: '#e5e7eb' }}
           />
           <Tooltip
             contentStyle={{
@@ -65,8 +66,8 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
             labelStyle={{ color: '#fff' }}
             itemStyle={{ color: '#fff' }}
             formatter={(value: number, name: string) => {
-              if (name === 'yakuniyBall') return [value.toFixed(2), "Yakuniy ball"];
-              if (name === 'reyting') return [value.toFixed(2), "Reyting"];
+              if (name === 'yakuniyBall') return [`${value.toFixed(1)}%`, "Yakuniy ball"];
+              if (name === 'reyting') return [value.toFixed(1), "Reyting"];
               return [value, name];
             }}
           />

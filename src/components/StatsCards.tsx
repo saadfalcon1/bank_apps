@@ -9,64 +9,56 @@ interface StatsCardsProps {
   topRating: number;
   totalDownloads: number;
   averageFinalScore: number;
+  platform?: "googlePlay" | "appStore";
+  topBankName?: string;
 }
 
-export function StatsCards({ totalBanks, totalRaters, averageRating, topRating, totalDownloads, averageFinalScore }: StatsCardsProps) {
+export function StatsCards({ totalBanks, totalRaters, averageRating, topRating, totalDownloads, averageFinalScore, platform = "googlePlay", topBankName }: StatsCardsProps) {
+  const prefix = platform === "googlePlay" ? "Google Play" : "App Store";
   const stats = [
     {
-      title: "Jami bank ilovalari",
-      value: totalBanks.toLocaleString(),
+      title: `${prefix}: Jami bank ilovalari soni`,
+      value: totalBanks.toLocaleString() + " ta",
       icon: Building2,
       gradient: "from-blue-500 via-blue-600 to-cyan-500",
       iconColor: "text-blue-400",
       bgGlow: "bg-blue-500/20",
-      detail: "O'zbekistondagi barcha bank ilovalari"
     },
     {
-      title: "Umumiy baho berganlar",
-      value: (totalRaters / 1000000).toFixed(2) + "M",
+      title: `${prefix}: Jami baho bergan foydalanuvchilar soni`,
+      value: (totalRaters / 1000000).toFixed(1) + "M",
       icon: Users,
       gradient: "from-purple-500 via-purple-600 to-pink-500",
       iconColor: "text-purple-400",
       bgGlow: "bg-purple-500/20",
-      detail: "Jami baho bergan foydalanuvchilar"
     },
     {
-      title: "O'rtacha reyting",
-      value: averageRating.toFixed(2),
+      title: `${prefix}: Bank mobil ilovalarining o’rtacha reyting bahosi`,
+      value: averageRating.toFixed(1),
       icon: Star,
       gradient: "from-yellow-500 via-yellow-600 to-orange-500",
       iconColor: "text-yellow-400",
       bgGlow: "bg-yellow-500/20",
-      detail: "5 yulduzdan"
+      detail: "5 yulduzli tizimda"
     },
     {
-      title: "Eng yuqori yakuniy ball",
-      value: topRating.toFixed(2),
+      title: `${prefix}: Eng yuqori yakuniy ball olgan bank ilovasi `,
+      value: topRating.toFixed(1),
       icon: Award,
       gradient: "from-green-500 via-green-600 to-emerald-500",
       iconColor: "text-green-400",
       bgGlow: "bg-green-500/20",
-      detail: "A'lo daraja"
+      detail: topBankName && topBankName.trim().length > 0 ? topBankName : "A'lo daraja"
     },
     {
-      title: "Oylik yuklanishlar",
-      value: (totalDownloads / 1000).toFixed(1) + "K",
+      title: `${prefix}:  Oylik yuklanishlar soni`,
+      value: (totalDownloads / 1000000).toFixed(1) + "M",
       icon: TrendingUp,
       gradient: "from-orange-500 via-orange-600 to-red-500",
       iconColor: "text-orange-400",
       bgGlow: "bg-orange-500/20",
-      detail: "Oxirgi oydagi yuklanishlar"
+      detail: "Noyabr oyidagi yuklanishlar soni"
     },
-    {
-      title: "O'rtacha yakuniy ball",
-      value: averageFinalScore.toFixed(1),
-      icon: Target,
-      gradient: "from-indigo-500 via-indigo-600 to-purple-500",
-      iconColor: "text-indigo-400",
-      bgGlow: "bg-indigo-500/20",
-      detail: "100 ballik tizimda"
-    }
   ];
 
   return (

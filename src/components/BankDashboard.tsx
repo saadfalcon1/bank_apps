@@ -31,6 +31,12 @@ export function BankDashboard() {
   const averageFinalScore = filteredData.length > 0 ? filteredData.reduce((sum, bank) => sum + bank.finalScore, 0) / filteredData.length : 0;
   const totalBanks = filteredData.length;
   const topRating = filteredData.length > 0 ? Math.max(...filteredData.map(bank => bank.finalScore)) : 0;
+  const topBankName = filteredData.length > 0 
+    ? (filteredData.reduce((best: any | null, bank: any) => {
+        if (!best || bank.finalScore > best.finalScore) return bank;
+        return best;
+      }, null)?.name ?? "")
+    : "";
 
   const categories = Array.isArray(currentData) 
     ? ["all", ...Array.from(new Set(currentData.map(b => b.category).filter(Boolean)))]
@@ -39,7 +45,8 @@ export function BankDashboard() {
   // @ts-ignore
     return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black p-4 md:p-8">
-      <div className="max-w-[1800px] mx-auto space-y-6">
+      {/* Keng ekranlarda grafiklar enini oshirish uchun konteyner kengaytirildi (2200px -> 2560px) */}
+      <div className="max-w-[2560px] mx-auto space-y-6">
         {/* Header with 3D effect - Two clickable cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Google Play Card */}
@@ -83,6 +90,8 @@ export function BankDashboard() {
           averageRating={averageRating}
           topRating={topRating}
           averageFinalScore={averageFinalScore}
+          platform={platform}
+          topBankName={topBankName}
         />
 
         {/* Main Content with Enhanced Tabs */}
@@ -94,7 +103,7 @@ export function BankDashboard() {
             </TabsTrigger>
             <TabsTrigger value="ratings" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500/20 data-[state=active]:to-orange-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
               <Star className="w-4 h-4 mr-2" />
-              Reytinglar
+              {platform === "googlePlay" ? "Google Play reytingi" : "App Store reytingi"}
             </TabsTrigger>
             <TabsTrigger value="details" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500/20 data-[state=active]:to-emerald-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
               <Users className="w-4 h-4 mr-2" />
@@ -108,11 +117,11 @@ export function BankDashboard() {
 
           <TabsContent value="overview" className="space-y-6">
             <TopBanksChart data={filteredData} />
-            <RatingDistribution data={filteredData} />
+            <RatingDistribution data={filteredData} platform={platform} />
           </TabsContent>
 
           <TabsContent value="ratings" className="space-y-6">
-            <RatingDistribution data={filteredData} detailed />
+            <RatingDistribution data={filteredData} detailed platform={platform} />
           </TabsContent>
 
           <TabsContent value="details" className="space-y-6">

@@ -40,6 +40,10 @@ export function BanksTable({ data }: BanksTableProps) {
       if (sortBy === 'appLabel') {
         aValue = (a as any)?.appId ?? (a as any)?.appName ?? '';
         bValue = (b as any)?.appId ?? (b as any)?.appName ?? '';
+      } else if (sortBy === 'commentsUnified') {
+        // App Store va Google Play formatlari uchun birlashtirilgan izohlar maydoni
+        aValue = (a as any)?.lastMonthComments ?? (a as any)?.lastMonthReviews ?? 0;
+        bValue = (b as any)?.lastMonthComments ?? (b as any)?.lastMonthReviews ?? 0;
       } else if (sortBy === 'verticalScorePercent') {
         aValue = (a as any)?.verticalScorePercent;
         bValue = (b as any)?.verticalScorePercent;
@@ -94,7 +98,7 @@ export function BanksTable({ data }: BanksTableProps) {
 
       <ScrollArea className="h-[60vh] md:h-[700px] rounded-xl">
         <div className="overflow-x-auto">
-          <Table className="min-w-[1400px] md:min-w-[1800px] lg:min-w-[2200px] whitespace-nowrap">
+          <Table className="min-w-[1600px] md:min-w-[2000px] lg:min-w-[2600px] whitespace-nowrap">
             <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/50 z-10">
               <TableRow className="border-white/20 hover:bg-transparent">
                 <TableHead className="text-white text-center w-16 sticky left-0 z-20 bg-black/50 backdrop-blur-xl">№</TableHead>
@@ -105,24 +109,24 @@ export function BanksTable({ data }: BanksTableProps) {
                   <SortButton field="appLabel" label="Ilova nomi" />
                 </TableHead>
                 <TableHead className="text-white text-center min-w-[120px] hidden md:table-cell">
-                 <SortButton field="totalRaters" label={<span>Baho berganlar<br/>soni</span>} />
-                </TableHead>
-                <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
-                  <SortButton
-                    field="volumeValue"
-                    label={<span>Oxirgi oyda<br/>yuklab olishlar soni</span>}
-                  />
+                 <SortButton field="totalRaters" label={<span>Jami baho bergan<br/>foydalanuvchilar soni</span>} />
                 </TableHead>
                 <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
                   <SortButton
                     field="lastMonthDownloads"
-                    label={<span>Oxirgi oyda<br/>izoh berganlar soni</span>}
+                    label={<span>So‘nggi oyda<br/>yuklab olishlar soni</span>}
+                  />
+                </TableHead>
+                <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
+                  <SortButton
+                    field="commentsUnified"
+                    label={<span>So‘nggi oyda<br/>izoh qoldirganlar soni</span>}
                   />
                 </TableHead>
                 <TableHead className="text-white text-center min-w-[140px] hidden md:table-cell">
                   <SortButton
                     field="lastMonthRaters"
-                    label={<span>Oylik<br/>baholovchilar soni</span>}
+                    label={<span>So‘nggi oyda<br/>baho bergan foydalanuvchilar soni</span>}
                   />
                 </TableHead>
                   <TableHead className="text-white text-center min-w-[100px]">
@@ -134,7 +138,7 @@ export function BanksTable({ data }: BanksTableProps) {
                 <TableHead className="text-white text-center min-w-[100px]">
                   <SortButton field="activityScore" label="Faollik" />
                 </TableHead>
-                <TableHead className="text-white text-center min-w-[120px]">
+                <TableHead className="text-white text-right min-w-[120px]">
                   <SortButton field="finalScore" label="Yakuniy ball" />
                 </TableHead>
               </TableRow>
@@ -156,22 +160,22 @@ export function BanksTable({ data }: BanksTableProps) {
                     {bank?.totalRaters?.toLocaleString?.() || '0'}
                   </TableCell>
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {typeof bank?.volumeValue === 'number' ? (bank.volumeValue * 1000000).toLocaleString() : '0'}
+                    {bank?.lastMonthDownloads?.toLocaleString?.() || '0'}
                   </TableCell>
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {bank?.lastMonthDownloads?.toLocaleString?.() || '0'}
+                    {(bank?.lastMonthComments ?? bank?.lastMonthReviews ?? 0).toLocaleString?.() || ((bank?.lastMonthComments ?? bank?.lastMonthReviews ?? 0).toLocaleString?.() ?? '0')}
                   </TableCell>
                   <TableCell className="text-white text-center hidden md:table-cell">
                     {bank?.lastMonthRaters?.toLocaleString?.() || '0'}
                   </TableCell>
                     <TableCell className="text-center">
                     <div className="flex items-center justify-center gap-2">
-                      <span className="text-white">{typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(2) : '0.00'}</span>
+                      <span className="text-white">{typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}%</span>
                     </div>
                   </TableCell>
                   <TableCell className="text-white text-center hidden md:table-cell">
                      <div className="flex items-center justify-center gap-2">
-                      <span className="text-white">{typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(2) : '0.00'}</span>
+                      <span className="text-white">{typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}%</span>
                     </div>
                   </TableCell>
                   <TableCell className="text-center">
@@ -181,10 +185,10 @@ export function BanksTable({ data }: BanksTableProps) {
                       (bank?.activityScore ?? 0) >= 40 ? "text-yellow-300" :
                       "text-orange-300"
                     }`}>
-                      {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(2) : '0.00'}%
+                      {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}%
                     </span>
                   </TableCell>
-                  <TableCell className="text-center">
+                  <TableCell className="text-right">
                     <Badge
                       className={`${
                         (bank?.finalScore ?? 0) >= 90 
@@ -198,7 +202,7 @@ export function BanksTable({ data }: BanksTableProps) {
                           : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30"
                       } backdrop-blur-xl border`}
                     >
-                      {typeof bank?.finalScore === 'number' ? bank.finalScore.toFixed(2) : '0.00'}
+                      {typeof bank?.finalScore === 'number' ? bank.finalScore.toFixed(1) : '0.0'}
                     </Badge>
                   </TableCell>
 

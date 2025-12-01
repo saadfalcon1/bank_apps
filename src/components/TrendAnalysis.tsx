@@ -166,8 +166,13 @@ export function TrendAnalysis({ data }: TrendAnalysisProps) {
               labelStyle={{ color: '#fff' }}
               itemStyle={{ color: '#fff' }}
               formatter={(value: number, name: string) => {
-                if (name === "reyting") return [(value / 20).toFixed(2), "Reyting (5 dan)"];
-                return [value.toFixed(2), name];
+                if (name === "reyting") return [(value / 20).toFixed(1), "Reyting (5 dan)"];
+                return [
+                  name.toLowerCase().includes('faollik') || name.toLowerCase().includes('(%')
+                    ? `${(value as number).toFixed(1)}%`
+                    : (value as number).toFixed(1),
+                  name
+                ];
               }}
             />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
