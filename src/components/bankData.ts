@@ -38,7 +38,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 1431,
     activityScore: 99.48,
     finalScore: 97.81,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ANOR BANK",
@@ -55,7 +55,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 344,
     activityScore: 98.48,
     finalScore: 97.2,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "UZUM BANK",
@@ -72,7 +72,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 596,
     activityScore: 98.54,
     finalScore: 95.98,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "BANK IPAK YO'LI",
@@ -89,7 +89,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 317,
     activityScore: 98.16,
     finalScore: 95.71,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ALOQABANK",
@@ -106,7 +106,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 174,
     activityScore: 96.97,
     finalScore: 94.06,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "TENGE BANK",
@@ -123,7 +123,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 97,
     activityScore: 94.22,
     finalScore: 90.48,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "O'ZSANOATQURILISHBANK",
@@ -140,7 +140,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 216,
     activityScore: 95.91,
     finalScore: 89.74,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "O'ZMILLIYBANK",
@@ -157,7 +157,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 101,
     activityScore: 94.61,
     finalScore: 88.7,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "ASAKABANK",
@@ -174,7 +174,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 50,
     activityScore: 91.47,
     finalScore: 87.49,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "XALQ BANKI",
@@ -191,7 +191,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 509,
     activityScore: 97.57,
     finalScore: 87.34,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "OPEN BANK",
@@ -208,7 +208,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 110,
     activityScore: 93.59,
     finalScore: 86.17,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "KAPITALBANK",
@@ -225,7 +225,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 15,
     activityScore: 84.33,
     finalScore: 82.8,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "AVO BANK",
@@ -242,7 +242,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 55,
     activityScore: 92.25,
     finalScore: 81.99,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "YANGI BANK",
@@ -259,7 +259,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 89,
     activityScore: 88.66,
     finalScore: 81.76,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "MIKROKREDITBANK",
@@ -276,7 +276,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 55,
     activityScore: 90.19,
     finalScore: 80.89,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "TRASTBANK",
@@ -293,7 +293,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 37,
     activityScore: 84.73,
     finalScore: 78.3,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ASIA ALLIANCE BANK",
@@ -310,7 +310,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 108,
     activityScore: 93.19,
     finalScore: 75.06,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "OCTOBANK",
@@ -327,7 +327,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 76,
     activityScore: 84.54,
     finalScore: 74.09,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "OFB",
@@ -344,7 +344,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 43,
     activityScore: 84.6,
     finalScore: 72.96,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "TURON BANK",
@@ -361,7 +361,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 43,
     activityScore: 80.95,
     finalScore: 72.65,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "HAMKOR BANK",
@@ -378,7 +378,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 169,
     activityScore: 91.65,
     finalScore: 69.73,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "INFINBANK",
@@ -395,7 +395,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 9,
     activityScore: 66.45,
     finalScore: 68.76,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "IPOTEKA-BANK",
@@ -412,7 +412,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 47,
     activityScore: 83.26,
     finalScore: 68.53,
-    category: "Davlat banklari"
+    category: "Xususiy bank"
   },
   {
     name: "AGROBANK",
@@ -429,7 +429,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 19,
     activityScore: 80.57,
     finalScore: 65.15,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "BIZNESNI RIVOJLANTIRISH BANKI",
@@ -446,7 +446,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 25,
     activityScore: 70.56,
     finalScore: 60.42,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "DAVR-BANK",
@@ -463,7 +463,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 21,
     activityScore: 67.29,
     finalScore: 53,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "HAYOT BANK",
@@ -480,10 +480,10 @@ export const bankData: BankData[] = [
     lastMonthComments: 3,
     activityScore: 57.12,
     finalScore: 51.48,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
-    name: "MADAD BANK",
+    name: "MYBANK",
     appId: "MyBank UZ",
     totalRaters: 52,
     ratings: { five: 36, four: 0, three: 1, two: 5, one: 10 },
@@ -497,7 +497,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 8,
     activityScore: 47.68,
     finalScore: 42.07,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "APEX BANK",
@@ -514,7 +514,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 2,
     activityScore: 45.51,
     finalScore: 40.71,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "GARANT BANK",
@@ -531,7 +531,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 4,
     activityScore: 42.01,
     finalScore: 38.85,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "UNIVERSAL BANK",
@@ -548,7 +548,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 5,
     activityScore: 42.19,
     finalScore: 38.25,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "KDB BANK O'ZBEKISTON",
@@ -565,7 +565,7 @@ export const bankData: BankData[] = [
     lastMonthComments: 2,
     activityScore: 22.55,
     finalScore: 30.69,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ZIRAAT BANK",
@@ -582,6 +582,6 @@ export const bankData: BankData[] = [
     lastMonthComments: 1,
     activityScore: 25.58,
     finalScore: 27.31,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   }
 ];

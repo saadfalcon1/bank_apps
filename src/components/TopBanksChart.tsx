@@ -33,7 +33,10 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
         </div>
         <h3 className="text-white">Yakuniy ball bo'yicha top 15 banklar</h3>
       </div>
-      <ResponsiveContainer width="100%" height={500}>
+      {/* Kichik ekranlarda etiketlar siqilib ketmasligi uchun gorizontal scroll qo'shildi */}
+      <div className="overflow-x-auto">
+        <div className="min-w-[640px]">
+        <ResponsiveContainer width="100%" height={500}>
         <BarChart data={topBanks} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
           <defs>
             {colors.map((color, idx) => (
@@ -48,8 +51,8 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
             dataKey="name" 
             angle={-45}
             textAnchor="end"
-            height={120}
-            tick={{ fill: '#e5e7eb', fontSize: 11 }}
+            height={130}
+            tick={{ fill: '#e5e7eb', fontSize: 13, fontWeight: 700 }}
           />
           <YAxis 
             tick={{ fill: '#e5e7eb', fontSize: 11 }}
@@ -78,6 +81,8 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+        </div>
+      </div>
     </Card>
   );
 }

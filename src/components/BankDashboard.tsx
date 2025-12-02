@@ -59,9 +59,9 @@ export function BankDashboard() {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 blur-3xl"></div>
             <div className="relative z-10">
               <h1 className="text-white mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all">
-                Google Play bank ilovalari tahlili
+                Google Play mobil bank ilovalari tahlili
               </h1>
-              <p className="text-white">O'zbekiston bank ilovalarining to'liq statistikasi va professional tahlili</p>
+              <p className="text-white">Bank mobil ilovalarining to‘liq statistikasi va professional tahlili</p>
             </div>
           </button>
 
@@ -96,20 +96,20 @@ export function BankDashboard() {
 
         {/* Main Content with Enhanced Tabs */}
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="backdrop-blur-2xl bg-white/5 border border-white/20 p-1.5 rounded-2xl shadow-2xl">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500/20 data-[state=active]:to-purple-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
+          <TabsList className="backdrop-blur-2xl bg-white/5 border border-white/20 p-1.5 rounded-2xl shadow-2xl flex flex-wrap md:flex-nowrap gap-2 overflow-x-auto">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500/20 data-[state=active]:to-purple-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white whitespace-nowrap">
               <BarChart3 className="w-4 h-4 mr-2" />
               Umumiy ko'rinish
             </TabsTrigger>
-            <TabsTrigger value="ratings" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500/20 data-[state=active]:to-orange-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
+            <TabsTrigger value="ratings" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-pink-500/20 data-[state=active]:to-orange-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white whitespace-nowrap">
               <Star className="w-4 h-4 mr-2" />
               {platform === "googlePlay" ? "Google Play reytingi" : "App Store reytingi"}
             </TabsTrigger>
-            <TabsTrigger value="details" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500/20 data-[state=active]:to-emerald-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
+            <TabsTrigger value="details" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500/20 data-[state=active]:to-emerald-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white whitespace-nowrap">
               <Users className="w-4 h-4 mr-2" />
               Batafsil jadval
             </TabsTrigger>
-            <TabsTrigger value="combined" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500/20 data-[state=active]:to-blue-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white">
+            <TabsTrigger value="combined" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500/20 data-[state=active]:to-blue-500/20 data-[state=active]:backdrop-blur-xl rounded-xl text-white whitespace-nowrap">
               <Layers className="w-4 h-4 mr-2" />
                 Yakuniy jadval
             </TabsTrigger>

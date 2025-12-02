@@ -53,10 +53,10 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
       // Diagrammada bank nomi emas, ilova nomi chiqishi uchun
       const appTitle = (bank as any)?.appId ?? (bank as any)?.appName ?? bank.name;
       return {
-        // X o'qidagi label sifatida ilova nomini ko'rsatamiz
-        name: appTitle.length > 15 ? appTitle.substring(0, 15) + "..." : appTitle,
-        // Tooltip uchun qo'shimcha ma'lumot sifatida bank nomini ko'rsatamiz
-        appLabel: bank.name,
+        // X o'qida bank nomini ko'rsatamiz (talab: bank nomini qo'shish va kattaroq qilish)
+        name: bank.name.length > 15 ? bank.name.substring(0, 15) + "..." : bank.name,
+        // Tooltip uchun qo'shimcha ma'lumot sifatida ilova nomini ko'rsatamiz
+        appLabel: appTitle,
         yakuniyBall: bank.finalScore,
         reyting: bank.averageRating,
         percent: fiveStarPercent
@@ -65,9 +65,9 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
 
   if (detailed) {
     const platformTitle = platform === "appStore"
-      ? "App Storedagi reyting bahosi eng yuqori bo’lgan TOP-15 bank"
+      ? "App Storedagi reyting bahosi eng yuqori bo’lgan TOP-15 mobil bank ilovasi"
       : platform === "googlePlay"
-      ? "Google Playdagi reyting bahosi eng yuqori bo’lgan TOP-15 bank"
+      ? "Google Playdagi reyting bahosi eng yuqori bo’lgan TOP-15 mobil bank ilovasi"
       : "O'rtacha bahosi eng yuqori Top 15 bank";
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -78,7 +78,10 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
             </div>
             <h3 className="text-white">{platformTitle}</h3>
           </div>
-          <ResponsiveContainer width="100%" height={500}>
+          {/* Kichik ekranlarda etiketlar siqilib ketmasligi uchun gorizontal scroll qo'shildi */}
+          <div className="overflow-x-auto">
+            <div className="min-w-[640px]">
+            <ResponsiveContainer width="100%" height={500}>
             <BarChart data={topRatedBanks} layout="horizontal" margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
               <defs>
                 <linearGradient id="ratingGradient" x1="0" y1="0" x2="0" y2="1">
@@ -91,8 +94,8 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
                 dataKey="name" 
                 angle={-45}
                 textAnchor="end"
-                height={120}
-                tick={{ fill: '#e5e7eb', fontSize: 11 }}
+                height={130}
+                tick={{ fill: '#e5e7eb', fontSize: 13, fontWeight: 700 }}
               />
               <YAxis 
                 domain={[4.0, 5.0]}
@@ -111,20 +114,17 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
                   const app = payload && payload[0] && payload[0].payload ? payload[0].payload.appLabel : '';
                   return app ? `${label} — ${app}` : label;
                 }}
-                formatter={(value: number, name: string, props: any) => {
-                  // App Store TOP-15 diagrammasida faqat reytingning o'zi ko'rsatiladi (foizsiz)
-                  if (platform === "appStore") {
-                    return [value.toFixed(1), "Reyting"];
-                  }
-                  // Boshqa hollarda (masalan, Google Play) avvalgi kabi foizni ham ko'rsatamiz
-                  const percent = props?.payload?.percent;
-                  const percentText = typeof percent === 'number' ? ` (${percent.toFixed(1)}% 5⭐)` : '';
-                  return [`${value.toFixed(1)}${percentText}`, "Reyting"];
+                formatter={(value: number) => {
+                  // Talabga ko'ra: Google Play va App Store TOP-15 diagrammalarida
+                  // tooltipda faqat 5 ballik reyting ko'rsatiladi, foiz kerak emas.
+                  return [value.toFixed(1), "Reyting"];
                 }}
               />
               <Bar dataKey="reyting" fill="url(#ratingGradient)" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
+            </div>
+          </div>
         </Card>
       </div>
     );

@@ -19,7 +19,7 @@ export const appStoreBankData = [
     lastMonthReviews: 18,
     activityScore: 95.41,
     finalScore: 96.86,
-    category: "Davlat banklari"
+    category: "Xususiy bank"
   },
   {
     name: "TBC BANK",
@@ -41,7 +41,7 @@ export const appStoreBankData = [
     lastMonthReviews: 14,
     activityScore: 94.84,
     finalScore: 96.3,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "UZUM BANK",
@@ -63,7 +63,7 @@ export const appStoreBankData = [
     lastMonthReviews: 25,
     activityScore: 95.68,
     finalScore: 96.12,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "O'ZSANOATQURILISHBANK",
@@ -85,7 +85,7 @@ export const appStoreBankData = [
     lastMonthReviews: 53,
     activityScore: 96.86,
     finalScore: 91.96,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "ALOQABANK",
@@ -107,7 +107,7 @@ export const appStoreBankData = [
     lastMonthReviews: 6,
     activityScore: 89.64,
     finalScore: 91.54,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "TENGE BANK",
@@ -129,7 +129,7 @@ export const appStoreBankData = [
     lastMonthReviews: 5,
     activityScore: 85.76,
     finalScore: 90.02,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ASAKABANK",
@@ -151,7 +151,7 @@ export const appStoreBankData = [
     lastMonthReviews: 21,
     activityScore: 93.35,
     finalScore: 89.14,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "O'ZMILLIYBANK",
@@ -173,7 +173,7 @@ export const appStoreBankData = [
     lastMonthReviews: 10,
     activityScore: 91.65,
     finalScore: 89.07,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "OPEN BANK",
@@ -195,7 +195,7 @@ export const appStoreBankData = [
     lastMonthReviews: 2,
     activityScore: 78.1,
     finalScore: 86.92,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "OFB",
@@ -217,7 +217,7 @@ export const appStoreBankData = [
     lastMonthReviews: 84,
     activityScore: 95.84,
     finalScore: 82.71,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ANOR BANK",
@@ -239,7 +239,7 @@ export const appStoreBankData = [
     lastMonthReviews: 11,
     activityScore: 86.08,
     finalScore: 80.34,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "BIZNESNI RIVOJLANTIRISH BANKI",
@@ -261,7 +261,7 @@ export const appStoreBankData = [
     lastMonthReviews: 0,
     activityScore: 63.57,
     finalScore: 77.83,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "AGROBANK",
@@ -283,7 +283,7 @@ export const appStoreBankData = [
     lastMonthReviews: 2,
     activityScore: 79.27,
     finalScore: 77.06,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "KAPITALBANK",
@@ -305,7 +305,7 @@ export const appStoreBankData = [
     lastMonthReviews: 4,
     activityScore: 70.29,
     finalScore: 76.34,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "TRASTBANK",
@@ -327,7 +327,7 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 50.85,
     finalScore: 69.19,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "AVO BANK",
@@ -349,7 +349,7 @@ export const appStoreBankData = [
     lastMonthReviews: 11,
     activityScore: 83.59,
     finalScore: 68.79,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "XALQ BANKI",
@@ -371,7 +371,7 @@ export const appStoreBankData = [
     lastMonthReviews: 5,
     activityScore: 84.55,
     finalScore: 66.42,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "HAMKOR BANK",
@@ -393,7 +393,7 @@ export const appStoreBankData = [
     lastMonthReviews: 6,
     activityScore: 78.74,
     finalScore: 66.17,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "OCTOBANK",
@@ -415,7 +415,7 @@ export const appStoreBankData = [
     lastMonthReviews: 3,
     activityScore: 57.3,
     finalScore: 65.33,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "YANGI BANK",
@@ -437,7 +437,7 @@ export const appStoreBankData = [
     lastMonthReviews: 3,
     activityScore: 59.74,
     finalScore: 62.48,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "TURON BANK",
@@ -459,7 +459,7 @@ export const appStoreBankData = [
     lastMonthReviews: 4,
     activityScore: 61.4,
     finalScore: 58.07,
-    category: "Xususiy banklar"
+    category: "Davlat banki"
   },
   {
     name: "INFINBANK",
@@ -481,7 +481,7 @@ export const appStoreBankData = [
     lastMonthReviews: 0,
     activityScore: 41.71,
     finalScore: 50.38,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "HAYOT BANK",
@@ -503,7 +503,7 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 62.96,
     finalScore: 49.92,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "DAVR-BANK",
@@ -525,7 +525,7 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 53.91,
     finalScore: 48.62,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "MIKROKREDITBANK",
@@ -547,7 +547,7 @@ export const appStoreBankData = [
     lastMonthReviews: 2,
     activityScore: 45.73,
     finalScore: 44.99,
-    category: "Davlat banklari"
+    category: "Davlat banki"
   },
   {
     name: "ASIA ALLIANCE BANK",
@@ -569,7 +569,7 @@ export const appStoreBankData = [
     lastMonthReviews: 5,
     activityScore: 71.34,
     finalScore: 44.11,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "IPOTEKA-BANK",
@@ -591,7 +591,7 @@ export const appStoreBankData = [
     lastMonthReviews: 2,
     activityScore: 65.72,
     finalScore: 42.63,
-    category: "Davlat banklari"
+    category: "Xususiy banki"
   },
   {
     name: "APEX BANK",
@@ -613,10 +613,10 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 42.46,
     finalScore: 42.03,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
-    name: "MADAD BANK",
+    name: "MYBANK",
     appName: "MyBank UZ (App Store)",
     totalRaters: 19,
     rating5: 14,
@@ -635,7 +635,7 @@ export const appStoreBankData = [
     lastMonthReviews: 0,
     activityScore: 30.25,
     finalScore: 40.13,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "UNIVERSAL BANK",
@@ -657,7 +657,7 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 46.18,
     finalScore: 38.34,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "KDB BANK O'ZBEKISTON",
@@ -679,7 +679,7 @@ export const appStoreBankData = [
     lastMonthReviews: 1,
     activityScore: 42.46,
     finalScore: 36.37,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "GARANT BANK",
@@ -701,7 +701,7 @@ export const appStoreBankData = [
     lastMonthReviews: 0,
     activityScore: 29.06,
     finalScore: 32.69,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   },
   {
     name: "ZIRAAT BANK",
@@ -723,6 +723,6 @@ export const appStoreBankData = [
     lastMonthReviews: 0,
     activityScore: 29.06,
     finalScore: 29.71,
-    category: "Xususiy banklar"
+    category: "Xususiy bank"
   }
 ];
