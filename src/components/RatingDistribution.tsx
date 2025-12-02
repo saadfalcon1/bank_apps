@@ -111,10 +111,16 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
                   const app = payload && payload[0] && payload[0].payload ? payload[0].payload.appLabel : '';
                   return app ? `${label} — ${app}` : label;
                 }}
-                formatter={(value: number, name: string, props: any) => [
-                  `${value.toFixed(1)} (${props.payload.percent.toFixed(1)}% 5⭐)`,
-                  "Reyting"
-                ]}
+                formatter={(value: number, name: string, props: any) => {
+                  // App Store TOP-15 diagrammasida faqat reytingning o'zi ko'rsatiladi (foizsiz)
+                  if (platform === "appStore") {
+                    return [value.toFixed(1), "Reyting"];
+                  }
+                  // Boshqa hollarda (masalan, Google Play) avvalgi kabi foizni ham ko'rsatamiz
+                  const percent = props?.payload?.percent;
+                  const percentText = typeof percent === 'number' ? ` (${percent.toFixed(1)}% 5⭐)` : '';
+                  return [`${value.toFixed(1)}${percentText}`, "Reyting"];
+                }}
               />
               <Bar dataKey="reyting" fill="url(#ratingGradient)" radius={[8, 8, 0, 0]} />
             </BarChart>
