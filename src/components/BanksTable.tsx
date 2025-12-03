@@ -1,23 +1,53 @@
-import { Card } from "./ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
-import { Search } from "lucide-react";
-import { Badge } from "./ui/badge";
 import { useState } from "react";
+import { Search } from "lucide-react";
+
+import { Card } from "./ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
+import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
 import { ScrollArea } from "./ui/scroll-area";
 
-interface BanksTableProps {
-  data: any[];
+interface BankRow {
+  name?: string;
+  category?: string;
+  appId?: string;
+  appName?: string;
+
+  totalRaters?: number;
+  lastMonthDownloads?: number;
+  lastMonthComments?: number;
+  lastMonthReviews?: number;
+  lastMonthRaters?: number;
+
+  horizontalScore?: number;
+  verticalScorePercent?: number;
+  activityScore?: number;
+  finalScore?: number;
+
+  [key: string]: any;
 }
+
+interface BanksTableProps {
+  data: BankRow[];
+}
+
+type SortOrder = "asc" | "desc";
 
 export function BanksTable({ data }: BanksTableProps) {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState<string>("finalScore");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
 
   const handleSort = (field: string) => {
     if (sortBy === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
       setSortBy(field);
       setSortOrder("desc");
@@ -25,31 +55,34 @@ export function BanksTable({ data }: BanksTableProps) {
   };
 
   const filteredData = data
-    .filter(bank =>
-      bank?.name?.toLowerCase?.().includes(search.toLowerCase()) ||
-      bank?.category?.toLowerCase?.().includes(search.toLowerCase()) ||
-      bank?.appId?.toLowerCase?.().includes(search.toLowerCase()) ||
-      bank?.appName?.toLowerCase?.().includes(search.toLowerCase())
-    )
+    .filter((bank) => {
+      const q = search.toLowerCase();
+      return (
+        bank?.name?.toLowerCase?.().includes(q) ||
+        bank?.category?.toLowerCase?.().includes(q) ||
+        bank?.appId?.toLowerCase?.().includes(q) ||
+        bank?.appName?.toLowerCase?.().includes(q)
+      );
+    })
     .sort((a, b) => {
       let aValue: any;
       let bValue: any;
 
-      if (sortBy === 'appLabel') {
-        aValue = a?.appId ?? a?.appName ?? '';
-        bValue = b?.appId ?? b?.appName ?? '';
-      } else if (sortBy === 'commentsUnified') {
+      if (sortBy === "appLabel") {
+        aValue = a?.appId ?? a?.appName ?? "";
+        bValue = b?.appId ?? b?.appName ?? "";
+      } else if (sortBy === "commentsUnified") {
         aValue = a?.lastMonthComments ?? a?.lastMonthReviews ?? 0;
         bValue = b?.lastMonthComments ?? b?.lastMonthReviews ?? 0;
-      } else if (sortBy === 'verticalScorePercent') {
-        aValue = a?.verticalScorePercent;
-        bValue = b?.verticalScorePercent;
-      } else if (sortBy === 'horizontalScore') {
-        aValue = a?.horizontalScore;
-        bValue = b?.horizontalScore;
+      } else if (sortBy === "verticalScorePercent") {
+        aValue = a?.verticalScorePercent ?? 0;
+        bValue = b?.verticalScorePercent ?? 0;
+      } else if (sortBy === "horizontalScore") {
+        aValue = a?.horizontalScore ?? 0;
+        bValue = b?.horizontalScore ?? 0;
       } else {
-        aValue = a?.[sortBy];
-        bValue = b?.[sortBy];
+        aValue = (a as any)?.[sortBy];
+        bValue = (b as any)?.[sortBy];
       }
 
       if (typeof aValue === "number" && typeof bValue === "number") {
@@ -63,8 +96,15 @@ export function BanksTable({ data }: BanksTableProps) {
       return 0;
     });
 
-  const SortButton = ({ field, label }: { field: string; label: string }) => (
+  const SortButton = ({
+    field,
+    label,
+  }: {
+    field: string;
+    label: React.ReactNode;
+  }) => (
     <button
+      type="button"
       onClick={() => handleSort(field)}
       className="flex flex-col items-center justify-center gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-1 leading-tight"
     >
@@ -72,16 +112,24 @@ export function BanksTable({ data }: BanksTableProps) {
         {label}
       </span>
       {sortBy === field && (
-        <span className="text-xs">{sortOrder === "desc" ? "↓" : "↑"}</span>
+        <span className="text-xs">{sortOrder === "desc" ? "↑" : "↓"}</span>
       )}
     </button>
   );
+
+  const formatNumber = (value?: number) =>
+    typeof value === "number" ? value.toLocaleString() : "0";
+
+  const formatScore = (value?: number) =>
+    typeof value === "number" ? value.toFixed(1) : "0.0";
 
   return (
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h3 className="text-white mb-2">Barcha bank mobil ilovalarining batafsil jadvali</h3>
+          <h3 className="text-white mb-2">
+            Tijorat banklari mobil ilovalarining batafsil jadvali
+          </h3>
           <p className="text-white text-sm">{filteredData.length} ta ilova</p>
         </div>
         <div className="relative w-full md:w-auto">
@@ -98,79 +146,111 @@ export function BanksTable({ data }: BanksTableProps) {
       <ScrollArea className="h-[60vh] md:h-[700px] rounded-xl">
         <div className="overflow-x-auto">
           <Table className="min-w-full">
-            <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/50 z-10">
-              <TableRow className="border-white/20 hover:bg-transparent">
-
-                {/* № */}
-                <TableHead className="text-white text-center w-[60px] sticky left-0 z-20 bg-black/50 backdrop-blur-xl border-r border-white/10">
-                  <div className="py-2">№</div>
+            <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/60 z-10">
+              <TableRow className="border-white/10 hover:bg-transparent">
+                {/* № – chapga yopishgan */}
+                <TableHead className="text-white text-center w-[60px] sticky left-0 z-20 bg-black/60 border-r border-white/10">
+                  №
                 </TableHead>
 
-                {/* 2-qatorli headerlar */}
-                <TableHead className="text-white w-[200px] sticky left-[60px] z-20 bg-black/50 backdrop-blur-xl border-r border-white/10 p-0">
+                {/* Bank nomi – № dan keyin yopishgan, header fonlari bir xil */}
+                <TableHead className="text-white w-[240px] sticky left-[60px] z-20 bg-black/60 border-r border-white/10 p-0">
                   <SortButton field="name" label="Bank nomi" />
                 </TableHead>
 
-                <TableHead className="text-white w-[180px] p-0">
+                {/* Ilova nomi */}
+                <TableHead className="text-white w-[220px] bg-black/60 border-r border-white/10 p-0">
                   <SortButton field="appLabel" label="Ilova nomi" />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="totalRaters"
-                    label={<>Jami baho bergan <br /> foydalanuvchilar soni</>}
+                    label={
+                      <>
+                        Jami baho bergan <br /> foydalanuvchilar soni
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="lastMonthDownloads"
-                    label={<>So‘nggi oyda <br /> yuklab olishlar soni</>}
+                    label={
+                      <>
+                        So‘nggi oyda <br /> yuklab olishlar soni
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="commentsUnified"
-                    label={<>So‘nggi oyda <br/> izoh qoldirganlar soni</>}
+                    label={
+                      <>
+                        So‘nggi oyda <br />
+                        izoh qoldirganlar soni
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="lastMonthRaters"
-                    label={<>So‘nggi oyda <br /> baho berganlar soni</>}
+                    label={
+                      <>
+                        So‘nggi oyda <br /> baho berganlar soni
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[110px] p-0">
+                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="horizontalScore"
-                    label={<>Gorizontal <br /> ball</>}
+                    label={
+                      <>
+                        Gorizontal <br /> ball
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[110px] hidden md:table-cell p-0">
+                <TableHead className="text-white text-center w-[130px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="verticalScorePercent"
-                    label={<>Vertikal <br /> ball</>}
+                    label={
+                      <>
+                        Vertikal <br /> ball
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[110px] p-0">
+                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 p-0">
                   <SortButton
                     field="activityScore"
-                    label={<>Faollik <br /> ball</>}
+                    label={
+                      <>
+                        Faollik <br /> ball
+                      </>
+                    }
                   />
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] p-0">
+                <TableHead className="text-white text-center w-[150px] bg-black/60 p-0">
                   <SortButton
                     field="finalScore"
-                    label={<>Yakuniy <br /> ball</>}
+                    label={
+                      <>
+                        Yakuniy <br /> ball
+                      </>
+                    }
                   />
                 </TableHead>
-
               </TableRow>
             </TableHeader>
 
@@ -178,48 +258,56 @@ export function BanksTable({ data }: BanksTableProps) {
               {filteredData.map((bank, index) => (
                 <TableRow
                   key={index}
-                  className="border-white/10 hover:bg-gradient-to-r hover:from-white/5 hover:to-white/10 transition-all duration-300"
+                  className="border-white/5 hover:bg-white/5 transition-colors duration-200"
                 >
-                  <TableCell className="text-white text-center sticky left-0 z-20 bg-black/30 backdrop-blur-xl border-r border-white/10">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 mx-auto">
+                  {/* № – sticky chapda, fon rasmga o‘xshash badge bilan */}
+                  <TableCell className="text-white text-center sticky left-0 z-20 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/10">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 mx-auto text-sm font-medium">
                       {index + 1}
                     </div>
                   </TableCell>
 
-                  <TableCell className="text-white sticky left-[60px] z-20 bg-black/30 backdrop-blur-xl border-r border-white/10">
-                    <div className="py-1 leading-tight">{bank?.name ?? '-'}</div>
+                  {/* Bank nomi – sticky, lekin satr foni bilan bir xil */}
+                  <TableCell className="text-white sticky left-[60px] z-10 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/5">
+                    <div className="py-1 leading-tight font-medium tracking-wide">
+                      {bank?.name ?? "-"}
+                    </div>
                   </TableCell>
 
                   <TableCell className="text-white">
-                    <div className="text-sm text-gray-200 leading-tight py-1">{bank.appId || bank.appName || '-'}</div>
+                    <div className="text-sm text-gray-200 leading-tight py-1">
+                      {bank.appId || bank.appName || "-"}
+                    </div>
                   </TableCell>
 
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {bank?.totalRaters?.toLocaleString?.() || '0'}
+                    {formatNumber(bank.totalRaters)}
                   </TableCell>
 
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {bank?.lastMonthDownloads?.toLocaleString?.() || '0'}
+                    {formatNumber(bank.lastMonthDownloads)}
                   </TableCell>
 
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {(bank?.lastMonthComments ?? bank?.lastMonthReviews ?? 0).toLocaleString?.() || '0'}
+                    {formatNumber(
+                      bank.lastMonthComments ?? bank.lastMonthReviews
+                    )}
                   </TableCell>
 
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    {bank?.lastMonthRaters?.toLocaleString?.() || '0'}
+                    {formatNumber(bank.lastMonthRaters)}
                   </TableCell>
 
                   <TableCell className="text-center text-white">
-                    {typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}
+                    {formatScore(bank.horizontalScore)}
                   </TableCell>
 
                   <TableCell className="text-center text-white hidden md:table-cell">
-                    {typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}
+                    {formatScore(bank.verticalScorePercent)}
                   </TableCell>
 
                   <TableCell className="text-center text-white">
-                    {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}
+                    {formatScore(bank.activityScore)}
                   </TableCell>
 
                   <TableCell className="text-center">
@@ -236,13 +324,12 @@ export function BanksTable({ data }: BanksTableProps) {
                           : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30"
                       } backdrop-blur-xl border`}
                     >
-                      {typeof bank?.finalScore === 'number' ? bank.finalScore.toFixed(1) : '0.0'}
+                      {formatScore(bank.finalScore)}
                     </Badge>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
-
           </Table>
         </div>
       </ScrollArea>
