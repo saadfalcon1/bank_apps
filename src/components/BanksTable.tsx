@@ -79,7 +79,7 @@ export function BanksTable({ data }: BanksTableProps) {
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h3 className="text-white mb-2">Barcha mobil bank ilovalarining batafsil jadvali</h3>
+          <h3 className="text-white mb-2">Barcha bank mobil ilovalarining batafsil jadvali</h3>
           <p className="text-white text-sm">{filteredData.length} ta ilova</p>
         </div>
         <div className="relative w-full md:w-auto">

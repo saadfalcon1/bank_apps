@@ -1,4 +1,3 @@
-
 import { Card } from "./ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { ArrowUpDown } from "lucide-react";
@@ -34,7 +33,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
     }
   };
 
-  // Combine data from both platforms
+  // Combine data
   const combinedData: CombinedBank[] = [];
 
   googlePlayData.forEach(gpBank => {
@@ -54,15 +53,15 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
     }
   });
 
-  // Sort data
+  // Sort
   const sortedData = [...combinedData].sort((a, b) => {
     const aValue = a[sortBy];
     const bValue = b[sortBy];
 
-    if (typeof aValue === 'number' && typeof bValue === 'number') {
+    if (typeof aValue === "number" && typeof bValue === "number") {
       return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
     }
-    if (typeof aValue === 'string' && typeof bValue === 'string') {
+    if (typeof aValue === "string" && typeof bValue === "string") {
       return sortOrder === "desc"
         ? bValue.localeCompare(aValue)
         : aValue.localeCompare(bValue);
@@ -73,83 +72,88 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
   const SortButton = ({ field, label }: { field: keyof CombinedBank; label: string }) => (
     <button
       onClick={() => handleSort(field)}
-      className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors"
+      className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors text-base font-semibold"
     >
       {label}
-      {sortBy === field && (
-        <ArrowUpDown className="w-3 h-3" />
-      )}
+      {sortBy === field && <ArrowUpDown className="w-3 h-3" />}
     </button>
   );
 
   return (
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
+
       <div className="mb-6">
         <h3 className="text-white mb-2">Google Play va App Store yakuniy jadval tahlili</h3>
-        <p className="text-white text-sm">
-
-        </p>
       </div>
 
       <div className="overflow-x-auto rounded-xl">
-        {/* Kichik ekranlarda gorizontal scroll uchun min-width qo'shildi */}
         <Table className="min-w-[880px] sm:min-w-full text-xs sm:text-sm">
+
           <TableHeader className="backdrop-blur-xl bg-black/50">
+
+            {/* HEADER 1 — TITLE ROW */}
             <TableRow className="border-white/20 hover:bg-transparent">
-              <TableHead className="text-white text-center w-16">№</TableHead>
-              <TableHead className="text-white min-w-[200px]">
+
+              <TableHead className="text-white text-center w-16 text-base font-semibold">№</TableHead>
+
+              <TableHead className="text-white min-w-[200px] text-base font-semibold">
                 <SortButton field="name" label="Bank nomi" />
               </TableHead>
-              {/* Kichik ekranlarda ilova nomini yashiramiz */}
-              <TableHead className="text-white min-w-[200px] hidden sm:table-cell">
+
+              <TableHead className="text-white min-w-[200px] hidden sm:table-cell text-base font-semibold">
                 <SortButton field="appLabel" label="Ilova nomi" />
               </TableHead>
-              {/* Kichik ekranlarda kategoriya ustunini yashiramiz */}
-              <TableHead className="text-white min-w-[140px] hidden sm:table-cell">
+
+              <TableHead className="text-white min-w-[140px] hidden sm:table-cell text-base font-semibold">
                 <SortButton field="category" label="Kategoriya" />
               </TableHead>
 
               {/* Google Play */}
               <TableHead className="text-center" colSpan={1}>
                 <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-2 border border-blue-400/30">
-                  <span className="text-blue-300 font-semibold">Google Play</span>
+                  <span className="text-blue-300 font-semibold text-base">Google Play</span>
                 </div>
               </TableHead>
 
               {/* App Store */}
               <TableHead className="text-center" colSpan={1}>
                 <div className="bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 rounded-lg p-2 border border-cyan-400/30">
-                  <span className="text-cyan-300 font-semibold">App Store</span>
+                  <span className="text-cyan-300 font-semibold text-base">App Store</span>
                 </div>
               </TableHead>
 
-              {/* Average */}
-              <TableHead className="text-white text-center min-w-[140px]">
-                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-400/30">
+              {/* AVERAGE SCORE — CENTERED */}
+              <TableHead className="text-white text-center text-lg font-semibold" colSpan={1}>
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg p-2 border border-green-400/30 flex justify-center">
                   <SortButton field="averageScore" label="O'rtacha Ball" />
                 </div>
               </TableHead>
+
             </TableRow>
 
-            {/* Sub headers */}
+            {/* HEADER 2 — SUBTITLE ROW */}
             <TableRow className="border-white/20 hover:bg-transparent">
               <TableHead className="text-white"></TableHead>
               <TableHead className="text-white"></TableHead>
               <TableHead className="text-white hidden sm:table-cell"></TableHead>
               <TableHead className="text-white hidden sm:table-cell"></TableHead>
+
               <TableHead className="text-white text-right min-w-[100px]">
                 <SortButton field="googlePlayScore" label="" />
               </TableHead>
+
               <TableHead className="text-white text-right min-w-[100px]">
                 <SortButton field="appStoreScore" label="" />
               </TableHead>
 
               <TableHead className="text-white text-center">
-                <span className="text-green-300">(GP + AS) / 2</span>
+                <span className="text-green-300 text-base font-semibold">(GP + AS) / 2</span>
               </TableHead>
             </TableRow>
+
           </TableHeader>
 
+          {/* BODY */}
           <TableBody>
             {sortedData.map((bank, index) => (
               <TableRow
@@ -162,14 +166,19 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                   </div>
                 </TableCell>
 
-                <TableCell className="text-white font-medium truncate max-w-[200px]" title={bank.name}>{bank.name}</TableCell>
-                <TableCell className="text-white text-sm hidden sm:table-cell truncate max-w-[220px]" title={bank.appLabel || '-' }>{bank.appLabel || '-'}</TableCell>
+                <TableCell className="text-white font-medium truncate max-w-[200px]" title={bank.name}>
+                  {bank.name}
+                </TableCell>
+
+                <TableCell className="text-white hidden sm:table-cell truncate max-w-[220px]" title={bank.appLabel || "-"}>
+                  {bank.appLabel || "-"}
+                </TableCell>
 
                 <TableCell className="hidden sm:table-cell">
                   <Badge
                     variant="outline"
                     className={`${
-                      bank.category === "Davlat banki" 
+                      bank.category === "Davlat banki"
                         ? "bg-green-500/10 text-green-300 border-green-500/30"
                         : bank.category === "Xususiy bank"
                         ? "bg-blue-500/10 text-blue-300 border-blue-500/30"
@@ -180,30 +189,23 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                   </Badge>
                 </TableCell>
 
-                {/* Google Play Score */}
                 <TableCell className="text-center">
-                  <Badge
-                    className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 border border-blue-400/30 backdrop-blur-xl"
-                  >
+                  <Badge className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-200 border border-blue-400/30 backdrop-blur-xl">
                     {bank.googlePlayScore.toFixed(1)}
                   </Badge>
                 </TableCell>
 
-                {/* App Store Score */}
                 <TableCell className="text-center">
-                  <Badge
-                    className="bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-200 border border-cyan-400/30 backdrop-blur-xl"
-                  >
+                  <Badge className="bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-200 border border-cyan-400/30 backdrop-blur-xl">
                     {bank.appStoreScore.toFixed(1)}
                   </Badge>
                 </TableCell>
 
-                {/* Average Score */}
-                <TableCell className="text-center ">
+                <TableCell className="text-center">
                   <Badge
                     className={`${
-                      bank.averageScore >= 90 
-                        ? "bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-200 border-green-400/40" 
+                      bank.averageScore >= 90
+                        ? "bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-200 border-green-400/40"
                         : bank.averageScore >= 75
                         ? "bg-gradient-to-r from-blue-500/30 to-cyan-500/30 text-blue-200 border-blue-400/40"
                         : bank.averageScore >= 60
@@ -214,13 +216,14 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                     {bank.averageScore.toFixed(1)}
                   </Badge>
                 </TableCell>
+
               </TableRow>
             ))}
           </TableBody>
+
         </Table>
       </div>
 
-      {/* Summary Statistics removed as per requirements */}
     </Card>
   );
 }
