@@ -132,7 +132,7 @@ export function BanksTable({ data }: BanksTableProps) {
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
                   <SortButton
                     field="commentsUnified"
-                    label={<>So‘nggi oyda izoh <br /> qoldirganlar soni</>}
+                    label={<>So‘nggi oyda <br/> izoh qoldirganlar soni</>}
                   />
                 </TableHead>
 
