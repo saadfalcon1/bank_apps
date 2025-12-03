@@ -36,26 +36,26 @@ export function BanksTable({ data }: BanksTableProps) {
       let bValue: any;
 
       if (sortBy === 'appLabel') {
-        aValue = (a as any)?.appId ?? (a as any)?.appName ?? '';
-        bValue = (b as any)?.appId ?? (b as any)?.appName ?? '';
+        aValue = a?.appId ?? a?.appName ?? '';
+        bValue = b?.appId ?? b?.appName ?? '';
       } else if (sortBy === 'commentsUnified') {
-        aValue = (a as any)?.lastMonthComments ?? (a as any)?.lastMonthReviews ?? 0;
-        bValue = (b as any)?.lastMonthComments ?? (b as any)?.lastMonthReviews ?? 0;
+        aValue = a?.lastMonthComments ?? a?.lastMonthReviews ?? 0;
+        bValue = b?.lastMonthComments ?? b?.lastMonthReviews ?? 0;
       } else if (sortBy === 'verticalScorePercent') {
-        aValue = (a as any)?.verticalScorePercent;
-        bValue = (b as any)?.verticalScorePercent;
+        aValue = a?.verticalScorePercent;
+        bValue = b?.verticalScorePercent;
       } else if (sortBy === 'horizontalScore') {
-        aValue = (a as any)?.horizontalScore;
-        bValue = (b as any)?.horizontalScore;
+        aValue = a?.horizontalScore;
+        bValue = b?.horizontalScore;
       } else {
-        aValue = (a as any)?.[sortBy];
-        bValue = (b as any)?.[sortBy];
+        aValue = a?.[sortBy];
+        bValue = b?.[sortBy];
       }
 
-      if (typeof aValue === 'number' && typeof bValue === 'number') {
+      if (typeof aValue === "number" && typeof bValue === "number") {
         return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
       }
-      if (typeof aValue === 'string' && typeof bValue === 'string') {
+      if (typeof aValue === "string" && typeof bValue === "string") {
         return sortOrder === "desc"
           ? bValue.localeCompare(aValue)
           : aValue.localeCompare(bValue);
@@ -66,11 +66,13 @@ export function BanksTable({ data }: BanksTableProps) {
   const SortButton = ({ field, label }: { field: string; label: string }) => (
     <button
       onClick={() => handleSort(field)}
-      className="flex items-center justify-center gap-1.5 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-1"
+      className="flex flex-col items-center justify-center gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-1 leading-tight"
     >
-      <span className="text-center leading-tight">{label}</span>
+      <span className="block text-center whitespace-normal leading-tight text-xs md:text-sm">
+        {label}
+      </span>
       {sortBy === field && (
-        <span className="text-xs flex-shrink-0">{sortOrder === "desc" ? "↓" : "↑"}</span>
+        <span className="text-xs">{sortOrder === "desc" ? "↓" : "↑"}</span>
       )}
     </button>
   );
@@ -98,41 +100,80 @@ export function BanksTable({ data }: BanksTableProps) {
           <Table className="min-w-full">
             <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/50 z-10">
               <TableRow className="border-white/20 hover:bg-transparent">
+
+                {/* № */}
                 <TableHead className="text-white text-center w-[60px] sticky left-0 z-20 bg-black/50 backdrop-blur-xl border-r border-white/10">
                   <div className="py-2">№</div>
                 </TableHead>
+
+                {/* 2-qatorli headerlar */}
                 <TableHead className="text-white w-[200px] sticky left-[60px] z-20 bg-black/50 backdrop-blur-xl border-r border-white/10 p-0">
                   <SortButton field="name" label="Bank nomi" />
                 </TableHead>
+
                 <TableHead className="text-white w-[180px] p-0">
                   <SortButton field="appLabel" label="Ilova nomi" />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="totalRaters" label="Jami baho bergan foydalanuvchilar soni" />
+                  <SortButton
+                    field="totalRaters"
+                    label={<>Jami baho bergan <br /> foydalanuvchilar soni</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="lastMonthDownloads" label="So'nggi oyda yuklab olishlar soni " />
+                  <SortButton
+                    field="lastMonthDownloads"
+                    label={<>So‘nggi oyda <br /> yuklab olishlar soni</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="commentsUnified" label="So'nggi oyda izoh qoldirganlar soni" />
+                  <SortButton
+                    field="commentsUnified"
+                    label={<>So‘nggi oyda izoh <br /> qoldirganlar soni</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="lastMonthRaters" label="So'nggi oyda baho berganlar soni" />
+                  <SortButton
+                    field="lastMonthRaters"
+                    label={<>So‘nggi oyda <br /> baho berganlar soni</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[110px] p-0">
-                  <SortButton field="horizontalScore" label="Gorizontal ball" />
+                  <SortButton
+                    field="horizontalScore"
+                    label={<>Gorizontal <br /> ball</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[110px] hidden md:table-cell p-0">
-                  <SortButton field="verticalScorePercent" label="Vertikal ball" />
+                  <SortButton
+                    field="verticalScorePercent"
+                    label={<>Vertikal <br /> ball</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[110px] p-0">
-                  <SortButton field="activityScore" label="Faollik" />
+                  <SortButton
+                    field="activityScore"
+                    label={<>Faollik <br /> ball</>}
+                  />
                 </TableHead>
+
                 <TableHead className="text-white text-center w-[130px] p-0">
-                  <SortButton field="finalScore" label="Yakuniy ball" />
+                  <SortButton
+                    field="finalScore"
+                    label={<>Yakuniy <br /> ball</>}
+                  />
                 </TableHead>
+
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {filteredData.map((bank, index) => (
                 <TableRow
@@ -144,74 +185,64 @@ export function BanksTable({ data }: BanksTableProps) {
                       {index + 1}
                     </div>
                   </TableCell>
+
                   <TableCell className="text-white sticky left-[60px] z-20 bg-black/30 backdrop-blur-xl border-r border-white/10">
                     <div className="py-1 leading-tight">{bank?.name ?? '-'}</div>
                   </TableCell>
+
                   <TableCell className="text-white">
                     <div className="text-sm text-gray-200 leading-tight py-1">{bank.appId || bank.appName || '-'}</div>
                   </TableCell>
+
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    <div className="py-1">{bank?.totalRaters?.toLocaleString?.() || '0'}</div>
+                    {bank?.totalRaters?.toLocaleString?.() || '0'}
                   </TableCell>
+
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    <div className="py-1">{bank?.lastMonthDownloads?.toLocaleString?.() || '0'}</div>
+                    {bank?.lastMonthDownloads?.toLocaleString?.() || '0'}
                   </TableCell>
+
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    <div className="py-1">
-                      {(bank?.lastMonthComments ?? bank?.lastMonthReviews ?? 0).toLocaleString?.() || '0'}
-                    </div>
+                    {(bank?.lastMonthComments ?? bank?.lastMonthReviews ?? 0).toLocaleString?.() || '0'}
                   </TableCell>
+
                   <TableCell className="text-white text-center hidden md:table-cell">
-                    <div className="py-1">{bank?.lastMonthRaters?.toLocaleString?.() || '0'}</div>
+                    {bank?.lastMonthRaters?.toLocaleString?.() || '0'}
                   </TableCell>
+
+                  <TableCell className="text-center text-white">
+                    {typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}
+                  </TableCell>
+
+                  <TableCell className="text-center text-white hidden md:table-cell">
+                    {typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}
+                  </TableCell>
+
+                  <TableCell className="text-center text-white">
+                    {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}
+                  </TableCell>
+
                   <TableCell className="text-center">
-                    <div className="flex items-center justify-center gap-2 py-1">
-                      <span className="text-white">
-                        {typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-white text-center hidden md:table-cell">
-                    <div className="flex items-center justify-center gap-2 py-1">
-                      <span className="text-white">
-                        {typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <div className="py-1">
-                      <span className={`${
-                        (bank?.activityScore ?? 0) >= 80 ? "text-white" :
-                        (bank?.activityScore ?? 0) >= 60 ? "text-white" :
-                        (bank?.activityScore ?? 0) >= 40 ? "text-white" :
-                        "text-white"
-                      }`}>
-                        {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <div className="flex items-center justify-center py-1">
-                      <Badge
-                        className={`${
-                          (bank?.finalScore ?? 0) >= 90 
-                            ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30" 
-                            : (bank?.finalScore ?? 0) >= 75
-                            ? "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30"
-                            : (bank?.finalScore ?? 0) >= 60
-                            ? "bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-yellow-300 border-yellow-500/30"
-                            : (bank?.finalScore ?? 0) >= 40
-                            ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
-                            : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30"
-                        } backdrop-blur-xl border`}
-                      >
-                        {typeof bank?.finalScore === 'number' ? bank.finalScore.toFixed(1) : '0.0'}
-                      </Badge>
-                    </div>
+                    <Badge
+                      className={`${
+                        (bank?.finalScore ?? 0) >= 90
+                          ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30"
+                          : (bank?.finalScore ?? 0) >= 75
+                          ? "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30"
+                          : (bank?.finalScore ?? 0) >= 60
+                          ? "bg-gradient-to-r from-yellow-500/20 to-orange-500/20 text-yellow-300 border-yellow-500/30"
+                          : (bank?.finalScore ?? 0) >= 40
+                          ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
+                          : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30"
+                      } backdrop-blur-xl border`}
+                    >
+                      {typeof bank?.finalScore === 'number' ? bank.finalScore.toFixed(1) : '0.0'}
+                    </Badge>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
+
           </Table>
         </div>
       </ScrollArea>
