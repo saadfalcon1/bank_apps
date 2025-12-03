@@ -42,15 +42,15 @@ type SortOrder = "asc" | "desc";
 
 export function BanksTable({ data }: BanksTableProps) {
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState<string>("finalScore");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  const [sortBy, setSortBy] = useState<"name" | "appLabel">("name");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
 
-  const handleSort = (field: string) => {
+  const handleSort = (field: "name" | "appLabel") => {
     if (sortBy === field) {
       setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
       setSortBy(field);
-      setSortOrder("desc");
+      setSortOrder("asc");
     }
   };
 
@@ -68,53 +68,56 @@ export function BanksTable({ data }: BanksTableProps) {
       let aValue: any;
       let bValue: any;
 
-      if (sortBy === "appLabel") {
+      if (sortBy === "name") {
+        aValue = a?.name ?? "";
+        bValue = b?.name ?? "";
+      } else {
+        // appLabel
         aValue = a?.appId ?? a?.appName ?? "";
         bValue = b?.appId ?? b?.appName ?? "";
-      } else if (sortBy === "commentsUnified") {
-        aValue = a?.lastMonthComments ?? a?.lastMonthReviews ?? 0;
-        bValue = b?.lastMonthComments ?? b?.lastMonthReviews ?? 0;
-      } else if (sortBy === "verticalScorePercent") {
-        aValue = a?.verticalScorePercent ?? 0;
-        bValue = b?.verticalScorePercent ?? 0;
-      } else if (sortBy === "horizontalScore") {
-        aValue = a?.horizontalScore ?? 0;
-        bValue = b?.horizontalScore ?? 0;
-      } else {
-        aValue = (a as any)?.[sortBy];
-        bValue = (b as any)?.[sortBy];
       }
 
-      if (typeof aValue === "number" && typeof bValue === "number") {
-        return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
-      }
       if (typeof aValue === "string" && typeof bValue === "string") {
-        return sortOrder === "desc"
-          ? bValue.localeCompare(aValue)
-          : aValue.localeCompare(bValue);
+        const cmp = aValue.localeCompare(bValue);
+        return sortOrder === "asc" ? cmp : -cmp;
       }
       return 0;
     });
 
-  const SortButton = ({
+  const SortHeader = ({
     field,
     label,
+    leftSticky,
+    width,
   }: {
-    field: string;
-    label: React.ReactNode;
+    field: "name" | "appLabel";
+    label: string;
+    leftSticky?: number;
+    width: string;
   }) => (
-    <button
-      type="button"
-      onClick={() => handleSort(field)}
-      className="flex flex-col items-center justify-center gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-1 leading-tight"
+    <TableHead
+      className={[
+        "text-white bg-black/60 border-r border-white/10 p-0",
+        `w-[${width}]`,
+        leftSticky !== undefined ? "sticky z-20" : "",
+        leftSticky !== undefined ? `left-[${leftSticky}px]` : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <span className="block text-center whitespace-normal leading-tight text-xs md:text-sm">
-        {label}
-      </span>
-      {sortBy === field && (
-        <span className="text-xs">{sortOrder === "desc" ? "↑" : "↓"}</span>
-      )}
-    </button>
+      <button
+        type="button"
+        onClick={() => handleSort(field)}
+        className="flex flex-col items-start justify-center gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-3 leading-tight"
+      >
+        <span className="block whitespace-normal leading-tight text-xs md:text-sm text-left">
+          {label}
+        </span>
+        {sortBy === field && (
+          <span className="text-xs">{sortOrder === "asc" ? "↑" : "↓"}</span>
+        )}
+      </button>
+    </TableHead>
   );
 
   const formatNumber = (value?: number) =>
@@ -128,7 +131,7 @@ export function BanksTable({ data }: BanksTableProps) {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
           <h3 className="text-white mb-2">
-            Tijorat banklari mobil ilovalarining batafsil jadvali
+            Barcha bank mobil ilovalarining batafsil jadvali
           </h3>
           <p className="text-white text-sm">{filteredData.length} ta ilova</p>
         </div>
@@ -148,108 +151,58 @@ export function BanksTable({ data }: BanksTableProps) {
           <Table className="min-w-full">
             <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/60 z-10">
               <TableRow className="border-white/10 hover:bg-transparent">
-                {/* № – chapga yopishgan */}
-                <TableHead className="text-white text-center w-[60px] sticky left-0 z-20 bg-black/60 border-r border-white/10">
+                {/* № – chapga yopishgan, sort yo‘q */}
+                <TableHead className="text-white text-left w-[60px] sticky left-0 z-20 bg-black/60 border-r border-white/10 px-3">
                   №
                 </TableHead>
 
-                {/* Bank nomi – № dan keyin yopishgan, header fonlari bir xil */}
-                <TableHead className="text-white w-[240px] sticky left-[60px] z-20 bg-black/60 border-r border-white/10 p-0">
-                  <SortButton field="name" label="Bank nomi" />
+                {/* Faqat Bank nomi sortable + sticky */}
+                <SortHeader
+                  field="name"
+                  label="Bank nomi"
+                  leftSticky={60}
+                  width="260px"
+                />
+
+                {/* Faqat Ilova nomi sortable (sticky emas) */}
+                <SortHeader
+                  field="appLabel"
+                  label="Ilova nomi"
+                  width="240px"
+                />
+
+                {/* Qolgan ustunlar – faqat matn, sort yo‘q */}
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                  Jami baho bergan <br /> foydalanuvchilar soni
                 </TableHead>
 
-                {/* Ilova nomi */}
-                <TableHead className="text-white w-[220px] bg-black/60 border-r border-white/10 p-0">
-                  <SortButton field="appLabel" label="Ilova nomi" />
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                  So‘nggi oyda <br /> yuklab olishlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="totalRaters"
-                    label={
-                      <>
-                        Jami baho bergan <br /> foydalanuvchilar soni
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                  So‘nggi oyda <br />
+                  izoh qoldirganlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="lastMonthDownloads"
-                    label={
-                      <>
-                        So‘nggi oyda <br /> yuklab olishlar soni
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                  So‘nggi oyda <br /> baho berganlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="commentsUnified"
-                    label={
-                      <>
-                        So‘nggi oyda <br />
-                        izoh qoldirganlar soni
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 px-3">
+                  Gorizontal <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="lastMonthRaters"
-                    label={
-                      <>
-                        So‘nggi oyda <br /> baho berganlar soni
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[130px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                  Vertikal <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="horizontalScore"
-                    label={
-                      <>
-                        Gorizontal <br /> ball
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 px-3">
+                  Faollik <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] hidden md:table-cell bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="verticalScorePercent"
-                    label={
-                      <>
-                        Vertikal <br /> ball
-                      </>
-                    }
-                  />
-                </TableHead>
-
-                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 p-0">
-                  <SortButton
-                    field="activityScore"
-                    label={
-                      <>
-                        Faollik <br /> ball
-                      </>
-                    }
-                  />
-                </TableHead>
-
-                <TableHead className="text-white text-center w-[150px] bg-black/60 p-0">
-                  <SortButton
-                    field="finalScore"
-                    label={
-                      <>
-                        Yakuniy <br /> ball
-                      </>
-                    }
-                  />
+                <TableHead className="text-white text-center w-[150px] bg-black/60 px-3">
+                  Yakuniy <br /> ball
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -260,20 +213,21 @@ export function BanksTable({ data }: BanksTableProps) {
                   key={index}
                   className="border-white/5 hover:bg-white/5 transition-colors duration-200"
                 >
-                  {/* № – sticky chapda, fon rasmga o‘xshash badge bilan */}
+                  {/* № */}
                   <TableCell className="text-white text-center sticky left-0 z-20 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/10">
                     <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 mx-auto text-sm font-medium">
                       {index + 1}
                     </div>
                   </TableCell>
 
-                  {/* Bank nomi – sticky, lekin satr foni bilan bir xil */}
+                  {/* Bank nomi – sticky */}
                   <TableCell className="text-white sticky left-[60px] z-10 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/5">
                     <div className="py-1 leading-tight font-medium tracking-wide">
                       {bank?.name ?? "-"}
                     </div>
                   </TableCell>
 
+                  {/* Ilova nomi */}
                   <TableCell className="text-white">
                     <div className="text-sm text-gray-200 leading-tight py-1">
                       {bank.appId || bank.appName || "-"}
