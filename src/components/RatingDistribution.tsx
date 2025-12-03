@@ -54,7 +54,7 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
       const appTitle = (bank as any)?.appId ?? (bank as any)?.appName ?? bank.name;
       return {
         // X o'qida bank nomini ko'rsatamiz (talab: bank nomini qo'shish va kattaroq qilish)
-        name: bank.name.length > 15 ? bank.name.substring(0, 15) + "..." : bank.name,
+        name: bank.name.length > 15 ? bank.name.substring(0, 25) + "..." : bank.name,
         // Tooltip uchun qo'shimcha ma'lumot sifatida ilova nomini ko'rsatamiz
         appLabel: appTitle,
         yakuniyBall: bank.finalScore,
@@ -65,9 +65,9 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
 
   if (detailed) {
     const platformTitle = platform === "appStore"
-      ? "App Storedagi reyting bahosi eng yuqori bo’lgan TOP-15 mobil bank ilovasi"
+      ? "App Store: Reyting bahosi eng yuqori bo’lgan TOP-15 bank mobil ilovasi"
       : platform === "googlePlay"
-      ? "Google Playdagi reyting bahosi eng yuqori bo’lgan TOP-15 mobil bank ilovasi"
+      ? "Google Play: Reyting bahosi eng yuqori bo’lgan TOP-15 bank mobil ilovasi"
       : "O'rtacha bahosi eng yuqori Top 15 bank";
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -115,9 +115,8 @@ export function RatingDistribution({ data, detailed = false, platform }: RatingD
                   return app ? `${label} — ${app}` : label;
                 }}
                 formatter={(value: number) => {
-                  // Talabga ko'ra: Google Play va App Store TOP-15 diagrammalarida
-                  // tooltipda faqat 5 ballik reyting ko'rsatiladi, foiz kerak emas.
-                  return [value.toFixed(1), "Reyting"];
+                  // Tooltipda reyting yoniga ⭐ qo'shildi
+                  return [`${value.toFixed(1)} ⭐`, "Reyting"];
                 }}
               />
               <Bar dataKey="reyting" fill="url(#ratingGradient)" radius={[8, 8, 0, 0]} />

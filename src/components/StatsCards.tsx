@@ -1,5 +1,5 @@
 import { Card } from "./ui/card";
-import { Building2, Users, Star, TrendingUp, Award, Target } from "lucide-react";
+import { Building2, Users, Star, TrendingUp, Award, Trophy } from "lucide-react";
 import { motion } from "motion/react";
 
 interface StatsCardsProps {
@@ -13,51 +13,55 @@ interface StatsCardsProps {
   topBankName?: string;
 }
 
-export function StatsCards({ totalBanks, totalRaters, averageRating, topRating, totalDownloads, averageFinalScore, platform = "googlePlay", topBankName }: StatsCardsProps) {
+export function StatsCards({
+  totalBanks,
+  totalRaters,
+  averageRating,
+  topRating,
+  totalDownloads,
+  platform = "googlePlay",
+  topBankName,
+}: StatsCardsProps) {
   const prefix = platform === "googlePlay" ? "Google Play" : "App Store";
+
   const stats = [
     {
       title: `${prefix}: Jami bank ilovalari soni`,
       value: totalBanks.toLocaleString() + " ta",
       icon: Building2,
       gradient: "from-blue-500 via-blue-600 to-cyan-500",
-      iconColor: "text-blue-400",
-      bgGlow: "bg-blue-500/20",
+      detail: "",
     },
     {
       title: `${prefix}: Jami baho bergan foydalanuvchilar soni`,
-      value: (totalRaters / 1000000).toFixed(1) + "-M",
+      value: (totalRaters / 1000000).toFixed(1) + " M",
       icon: Users,
       gradient: "from-purple-500 via-purple-600 to-pink-500",
-      iconColor: "text-purple-400",
-      bgGlow: "bg-purple-500/20",
+      detail: "",
     },
     {
       title: `${prefix}: Bank mobil ilovalarining o’rtacha reyting bahosi`,
       value: averageRating.toFixed(1),
       icon: Star,
       gradient: "from-yellow-500 via-yellow-600 to-orange-500",
-      iconColor: "text-yellow-400",
-      bgGlow: "bg-yellow-500/20",
-      detail: "5 (yulduzlik tizimda)"
+      detail: "5 (yulduzlik tizimda)",
     },
     {
-      title: `${prefix}: Eng yuqori yakuniy ball olgan mobil bank ilovasi `,
+      title: `${prefix}: Eng yuqori yakuniy ball olgan bank mobil ilovasi`,
       value: topRating.toFixed(1),
-      icon: Award,
+      icon: Trophy, // ←←← KUBOK SHU YERGA QO'YILDI
       gradient: "from-green-500 via-green-600 to-emerald-500",
-      iconColor: "text-green-400",
-      bgGlow: "bg-green-500/20",
-      detail: topBankName && topBankName.trim().length > 0 ? topBankName : "A'lo daraja"
+      detail:
+        topBankName && topBankName.trim().length > 0
+          ? topBankName
+          : "A'lo daraja",
     },
     {
-      title: `${prefix}:  Oylik yuklanishlar soni`,
-      value: (totalDownloads / 1000000).toFixed(1) + "-M",
+      title: `${prefix}: Oylik yuklanishlar soni`,
+      value: (totalDownloads / 1000000).toFixed(1) + " M",
       icon: TrendingUp,
       gradient: "from-orange-500 via-orange-600 to-red-500",
-      iconColor: "text-orange-400",
-      bgGlow: "bg-orange-500/20",
-      detail: "Noyabr oyidagi yuklanishlar soni"
+      detail: "Noyabr oyidagi yuklanishlar soni",
     },
   ];
 
@@ -65,6 +69,7 @@ export function StatsCards({ totalBanks, totalRaters, averageRating, topRating, 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
+
         return (
           <motion.div
             key={index}
@@ -73,38 +78,47 @@ export function StatsCards({ totalBanks, totalRaters, averageRating, topRating, 
             transition={{ delay: index * 0.1 }}
           >
             <Card className="relative backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6 hover:bg-white/15 transition-all duration-500 md:hover:scale-105 hover:shadow-2xl overflow-hidden group">
-              {/* Animated glow effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-500`}></div>
 
-              {/* Content */}
+              <div
+                className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-500`}
+              ></div>
+
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <p className="text-white mb-2">{stat.title}</p>
-                    {stat.title.includes("Eng yuqori yakuniy ball olgan mobil bank ilovasi") && platform === "googlePlay" ? (
-                      // Google Play uchun maxsus ko'rinish: bank nomi katta, pastida ball badge
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] mb-2">
-                          {stat.detail}
-                        </h3>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-emerald-400/30 backdrop-blur-xl">
-                          <span className="text-white font-semibold text-lg leading-none">{stat.value}</span>
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <h3 className="text-white mb-1">{stat.value}</h3>
-                        <p className="text-xs text-gray-200">{stat.detail}</p>
-                      </>
+
+                    {/* TOP BANK LARGE NAME */}
+                    {stat.title.includes("Eng yuqori") && (
+                      <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-2">
+                        {stat.detail}
+                      </h3>
                     )}
+
+                    {/* BADGE */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl mb-2">
+                      <span className="text-white font-semibold text-lg leading-none">
+                        {stat.value}
+                      </span>
+                    </div>
+
+                    {stat.detail &&
+                      !stat.title.includes("Eng yuqori") && (
+                        <p className="text-xs text-gray-300">{stat.detail}</p>
+                      )}
                   </div>
-                  <div className={`p-4 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg relative`}>
-                    <div className={`absolute inset-0 ${stat.bgGlow} blur-xl opacity-50`}></div>
-                    <Icon className={`w-6 h-6 text-white relative z-10`} />
+
+                  {/* ICON */}
+                  <div
+                    className={`p-4 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg relative`}
+                  >
+                    <div
+                      className="absolute inset-0 bg-white/10 blur-xl opacity-50"
+                    ></div>
+                    <Icon className="w-6 h-6 text-white relative z-10" />
                   </div>
                 </div>
 
-                {/* Progress bar animation */}
                 <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
                     className={`h-full bg-gradient-to-r ${stat.gradient}`}

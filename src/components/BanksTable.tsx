@@ -108,16 +108,16 @@ export function BanksTable({ data }: BanksTableProps) {
                   <SortButton field="appLabel" label="Ilova nomi" />
                 </TableHead>
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="totalRaters" label="Jami baho bergan foydalanuvchilar" />
+                  <SortButton field="totalRaters" label="Jami baho bergan foydalanuvchilar soni" />
                 </TableHead>
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="lastMonthDownloads" label="So'nggi oyda yuklab olishlar" />
+                  <SortButton field="lastMonthDownloads" label="So'nggi oyda yuklab olishlar soni " />
                 </TableHead>
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="commentsUnified" label="So'nggi oyda izohlar" />
+                  <SortButton field="commentsUnified" label="So'nggi oyda izoh qoldirganlar soni" />
                 </TableHead>
                 <TableHead className="text-white text-center w-[140px] hidden md:table-cell p-0">
-                  <SortButton field="lastMonthRaters" label="So'nggi oyda baho berganlar" />
+                  <SortButton field="lastMonthRaters" label="So'nggi oyda baho berganlar soni" />
                 </TableHead>
                 <TableHead className="text-white text-center w-[110px] p-0">
                   <SortButton field="horizontalScore" label="Gorizontal ball" />
@@ -167,14 +167,14 @@ export function BanksTable({ data }: BanksTableProps) {
                   <TableCell className="text-center">
                     <div className="flex items-center justify-center gap-2 py-1">
                       <span className="text-white">
-                        {typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}%
+                        {typeof bank?.horizontalScore === 'number' ? bank.horizontalScore.toFixed(1) : '0.0'}
                       </span>
                     </div>
                   </TableCell>
                   <TableCell className="text-white text-center hidden md:table-cell">
                     <div className="flex items-center justify-center gap-2 py-1">
                       <span className="text-white">
-                        {typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}%
+                        {typeof bank?.verticalScorePercent === 'number' ? bank.verticalScorePercent.toFixed(1) : '0.0'}
                       </span>
                     </div>
                   </TableCell>
@@ -186,7 +186,7 @@ export function BanksTable({ data }: BanksTableProps) {
                         (bank?.activityScore ?? 0) >= 40 ? "text-white" :
                         "text-white"
                       }`}>
-                        {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}%
+                        {typeof bank?.activityScore === 'number' ? bank.activityScore.toFixed(1) : '0.0'}
                       </span>
                     </div>
                   </TableCell>

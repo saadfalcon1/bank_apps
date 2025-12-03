@@ -5,18 +5,21 @@ import { TrendingUp } from "lucide-react";
 
 interface TopBanksChartProps {
   data: BankData[];
+  platform?: "googlePlay" | "appStore";
 }
 
-export function TopBanksChart({ data }: TopBanksChartProps) {
+export function TopBanksChart({ data, platform = "googlePlay" }: TopBanksChartProps) {
   // Sort by finalScore in descending order (highest to lowest)
   const topBanks = [...data]
     .sort((a, b) => b.finalScore - a.finalScore)
     .slice(0, 15)
     .map(bank => ({
-      name: bank.name.length > 15 ? bank.name.substring(0, 15) + "..." : bank.name,
+      name: bank.name.length > 25 ? bank.name.substring(0, 25) + "..." : bank.name,
       yakuniyBall: bank.finalScore,
       reyting: bank.averageRating,
-      category: bank.category
+      category: bank.category,
+      // Tooltipda ilova nomini ko'rsatish uchun
+      appLabel: bank.appId
     }));
 
   const colors = [
@@ -25,13 +28,17 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
     "#ef4444", "#84cc16", "#06b6d4", "#f43f5e", "#8b5cf6"
   ];
 
+  const platformTitle = platform === "appStore"
+    ? "App Store: Yakuniy ball bo'yicha top 15 bank mobil ilovasi"
+    : "Google Play: Yakuniy ball bo'yicha top 15 bank mobil ilovasi";
+
   return (
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6 hover:border-white/30 transition-all duration-300">
       <div className="flex items-center gap-2 mb-6">
         <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
           <TrendingUp className="w-5 h-5 text-blue-400" />
         </div>
-        <h3 className="text-white">Yakuniy ball bo'yicha top 15 banklar</h3>
+        <h3 className="text-white">{platformTitle}</h3>
       </div>
       {/* Kichik ekranlarda etiketlar siqilib ketmasligi uchun gorizontal scroll qo'shildi */}
       <div className="overflow-x-auto">
@@ -68,6 +75,10 @@ export function TopBanksChart({ data }: TopBanksChartProps) {
             }}
             labelStyle={{ color: '#fff' }}
             itemStyle={{ color: '#fff' }}
+            labelFormatter={(label: any, payload: any[]) => {
+              const app = payload && payload[0] && payload[0].payload ? payload[0].payload.appLabel : '';
+              return app ? `${label} — ${app}` : label;
+            }}
             formatter={(value: number, name: string) => {
               if (name === 'yakuniyBall') return [`${value.toFixed(1)}%`, "Yakuniy ball"];
               if (name === 'reyting') return [value.toFixed(1), "Reyting"];
