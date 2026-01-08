@@ -61,7 +61,7 @@ export function StatsCards({
       value: (totalDownloads / 1000000).toFixed(1) + " M",
       icon: TrendingUp,
       gradient: "from-orange-500 via-orange-600 to-red-500",
-      detail: "Noyabr oyidagi yuklanishlar soni",
+      detail: "Dekabr oyidagi yuklanishlar soni",
     },
   ];
 
