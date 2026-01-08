@@ -517,23 +517,6 @@ export const bankData: BankData[] = [
     category: "Xususiy bank"
   },
   {
-    name: "UNIVERSAL BANK",
-    appId: "Unversal bank",
-    totalRaters: 291,
-    ratings: { five: 169, four: 2, three: 22, two: 11, one: 87 },
-    averageRating: 3.53,
-    horizontalScore: 70.6,
-    verticalScore: 0.08,
-    verticalScorePercent: 1.66,
-    volumeValue: 0,
-    lastMonthDownloads: 10000,
-    lastMonthRaters: 8,
-    lastMonthComments: 11,
-    activityScore: 42.15,
-    finalScore: 38.14,
-    category: "Xususiy bank"
-  },
-  {
     name: "ZIRAAT BANK",
     appId: "Ziraat Bank Uzbekistan ",
     totalRaters: 16,
@@ -566,5 +549,22 @@ export const bankData: BankData[] = [
     activityScore: 19.07,
     finalScore: 31.58,
     category: "Xususiy bank"
-  }
+  },
+  {
+    name: "UNIVERSAL BANK",
+    appId: "Universalbank",
+    totalRaters: 291,
+    ratings: { five: 169, four: 2, three: 22, two: 11, one: 87 },
+    averageRating: 3.53,
+    horizontalScore: 70.6,
+    verticalScore: 0.08,
+    verticalScorePercent: 1.66,
+    volumeValue: 0,
+    lastMonthDownloads: 10000,
+    lastMonthRaters: 8,
+    lastMonthComments: 11,
+    activityScore: 42.15,
+    finalScore: 38.14,
+    category: "Xususiy bank"
+  },
 ];

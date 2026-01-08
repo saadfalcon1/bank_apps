@@ -638,8 +638,8 @@ export const appStoreBankData = [
     category: "Xususiy bank"
   },
   {
-    name: "UNVERSAL BANK",
-    appId: "Universalbank  ",
+    name: "UNIVERSAL BANK",
+    appId: "Universalbank",
     totalRaters: 42,
     rating5: 23,
     rating4: 1,
@@ -703,4 +703,5 @@ export const appStoreBankData = [
     finalScore: 23.23,
     category: "Xususiy bank"
   }
+
 ];
