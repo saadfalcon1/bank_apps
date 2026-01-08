@@ -14,7 +14,7 @@ export function BankDashboard() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [platform, setPlatform] = useState<"googlePlay" | "appStore">("googlePlay");
   
-  // Select data based on platform
+
   const currentData = platform === "googlePlay" ? bankData : appStoreBankData;
   
   // Filter data by category - ensure we always have an array
