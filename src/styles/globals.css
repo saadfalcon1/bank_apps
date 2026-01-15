@@ -187,3 +187,53 @@
 html {
   font-size: var(--font-size);
 }
+
+/* ========================= */
+/*  Scrollbar ko‘rinishi     */
+/* ========================= */
+
+/* Maxsus klass: faqat qo‘ygan joyingda ishlaydi */
+.scrollbar-visible {
+  scrollbar-width: thin;              /* Firefox uchun */
+  scrollbar-color: #4b5563 #111827;   /* thumb / track */
+}
+
+/* Chrome, Edge, Safari */
+.scrollbar-visible::-webkit-scrollbar {
+  height: 10px; /* gorizontal scroll balandligi */
+  width: 10px;  /* vertikal scroll eni */
+}
+
+.scrollbar-visible::-webkit-scrollbar-track {
+  background: #111827;  /* track rangi (bg-gray-900 ga yaqin) */
+  border-radius: 999px;
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: #4b5563;  /* thumb rangi (gray-600) */
+  border-radius: 999px;
+  border: 2px solid #111827;
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af; /* hoverda biroz ochroq */
+}
+
+/* Agar butun sahifa scrollini ham aniq ko‘rinsin desang */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #020617;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 999px;
+}

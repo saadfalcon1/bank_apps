@@ -97,7 +97,8 @@ export function BanksTable({ data }: BanksTableProps) {
   }) => (
     <TableHead
       className={[
-        "text-white bg-black/60 border-r border-white/10 p-0",
+        // umumiy: kichikroq shrift, md:da normal
+        "text-white bg-black/60 border-r border-white/10 p-0 text-[10px] md:text-xs lg:text-sm",
         `w-[${width}]`,
         leftSticky !== undefined ? "sticky z-20" : "",
         leftSticky !== undefined ? `left-[${leftSticky}px]` : "",
@@ -108,13 +109,15 @@ export function BanksTable({ data }: BanksTableProps) {
       <button
         type="button"
         onClick={() => handleSort(field)}
-        className="flex flex-col items-start justify-center gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-2 px-3 leading-tight"
+        className="flex flex-col items-start justify-center gap-0.5 md:gap-1 text-white hover:text-gray-200 transition-colors w-full h-full py-1.5 md:py-2 px-2 md:px-3 leading-tight"
       >
-        <span className="block whitespace-normal leading-tight text-xs md:text-sm text-left">
+        <span className="block whitespace-normal leading-tight text-[10px] md:text-xs lg:text-sm text-left">
           {label}
         </span>
         {sortBy === field && (
-          <span className="text-xs">{sortOrder === "asc" ? "↑" : "↓"}</span>
+          <span className="text-[10px] md:text-xs">
+            {sortOrder === "asc" ? "↑" : "↓"}
+          </span>
         )}
       </button>
     </TableHead>
@@ -127,32 +130,35 @@ export function BanksTable({ data }: BanksTableProps) {
     typeof value === "number" ? value.toFixed(1) : "0.0";
 
   return (
-    <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+    <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-4 md:p-6">
+      {/* Header qismi */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-4 mb-4 md:mb-6">
         <div>
-          <h3 className="text-white mb-2">
+          <h3 className="text-white mb-1 md:mb-2 text-sm md:text-base lg:text-lg">
             Barcha bank mobil ilovalarining batafsil jadvali
           </h3>
-          <p className="text-white text-sm">{filteredData.length} ta ilova</p>
+          <p className="text-white text-xs md:text-sm">
+            {filteredData.length} ta ilova
+          </p>
         </div>
         <div className="relative w-full md:w-auto">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 md:w-4 md:h-4 text-gray-300" />
           <Input
             placeholder="Bank, ilova yoki kategoriya bo'yicha qidirish..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-white/5 border-white/20 text-white placeholder:text-gray-300 w-full md:min-w-[350px]"
+            className="pl-9 md:pl-10 bg-white/5 border-white/20 text-white placeholder:text-gray-300 w-full text-xs md:text-sm md:min-w-[350px] h-8 md:h-9"
           />
         </div>
       </div>
 
-      <ScrollArea className="h-[60vh] md:h-[700px] rounded-xl">
+      <ScrollArea className="h-[55vh] md:h-[700px] rounded-xl">
         <div className="overflow-x-auto">
-          <Table className="min-w-full">
+          <Table className="min-w-full text-[11px] md:text-xs lg:text-sm">
             <TableHeader className="sticky top-0 backdrop-blur-xl bg-black/60 z-10">
               <TableRow className="border-white/10 hover:bg-transparent">
                 {/* № – chapga yopishgan, sort yo‘q */}
-                <TableHead className="text-white text-left w-[60px] sticky left-0 z-20 bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-left w-[50px] md:w-[60px] sticky left-0 z-20 bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   №
                 </TableHead>
 
@@ -161,47 +167,47 @@ export function BanksTable({ data }: BanksTableProps) {
                   field="name"
                   label="Bank nomi"
                   leftSticky={60}
-                  width="260px"
+                  width="220px"
                 />
 
                 {/* Faqat Ilova nomi sortable (sticky emas) */}
                 <SortHeader
                   field="appLabel"
                   label="Ilova nomi"
-                  width="240px"
+                  width="200px"
                 />
 
                 {/* Qolgan ustunlar – faqat matn, sort yo‘q */}
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[160px] hidden md:table-cell bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   Jami baho bergan <br /> foydalanuvchilar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[160px] hidden md:table-cell bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   So‘nggi oyda <br /> yuklab olishlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[160px] hidden md:table-cell bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   So‘nggi oyda <br />
                   izoh qoldirganlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[180px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[160px] hidden md:table-cell bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   So‘nggi oyda <br /> baho berganlar soni
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[110px] bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   Gorizontal <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] hidden md:table-cell bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[110px] hidden md:table-cell bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   Vertikal <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[130px] bg-black/60 border-r border-white/10 px-3">
+                <TableHead className="text-white text-center w-[110px] bg-black/60 border-r border-white/10 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   Faollik <br /> ball
                 </TableHead>
 
-                <TableHead className="text-white text-center w-[150px] bg-black/60 px-3">
+                <TableHead className="text-white text-center w-[120px] bg-black/60 px-2 md:px-3 text-[10px] md:text-xs lg:text-sm">
                   Yakuniy <br /> ball
                 </TableHead>
               </TableRow>
@@ -215,21 +221,21 @@ export function BanksTable({ data }: BanksTableProps) {
                 >
                   {/* № */}
                   <TableCell className="text-white text-center sticky left-0 z-20 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/10">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 mx-auto text-sm font-medium">
+                    <div className="flex items-center justify-center w-7 h-7 md:w-9 md:h-9 rounded-xl bg-white/5 mx-auto text-[10px] md:text-sm font-medium">
                       {index + 1}
                     </div>
                   </TableCell>
 
                   {/* Bank nomi – sticky */}
                   <TableCell className="text-white sticky left-[60px] z-10 bg-gradient-to-r from-black/70 to-black/60 border-r border-white/5">
-                    <div className="py-1 leading-tight font-medium tracking-wide">
+                    <div className="py-0.5 md:py-1 leading-tight font-medium tracking-wide text-xs md:text-sm">
                       {bank?.name ?? "-"}
                     </div>
                   </TableCell>
 
                   {/* Ilova nomi */}
                   <TableCell className="text-white">
-                    <div className="text-sm text-gray-200 leading-tight py-1">
+                    <div className="text-[11px] md:text-xs lg:text-sm text-gray-200 leading-tight py-0.5 md:py-1">
                       {bank.appId || bank.appName || "-"}
                     </div>
                   </TableCell>
@@ -252,15 +258,15 @@ export function BanksTable({ data }: BanksTableProps) {
                     {formatNumber(bank.lastMonthRaters)}
                   </TableCell>
 
-                  <TableCell className="text-center text-white">
+                  <TableCell className="text-center text-white text-[11px] md:text-xs lg:text-sm">
                     {formatScore(bank.horizontalScore)}
                   </TableCell>
 
-                  <TableCell className="text-center text-white hidden md:table-cell">
+                  <TableCell className="text-center text-white hidden md:table-cell text-xs lg:text-sm">
                     {formatScore(bank.verticalScorePercent)}
                   </TableCell>
 
-                  <TableCell className="text-center text-white">
+                  <TableCell className="text-center text-white text-[11px] md:text-xs lg:text-sm">
                     {formatScore(bank.activityScore)}
                   </TableCell>
 
@@ -276,7 +282,7 @@ export function BanksTable({ data }: BanksTableProps) {
                           : (bank?.finalScore ?? 0) >= 40
                           ? "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
                           : "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-300 border-red-500/30"
-                      } backdrop-blur-xl border`}
+                      } backdrop-blur-xl border text-[11px] md:text-xs lg:text-sm px-2 py-1`}
                     >
                       {formatScore(bank.finalScore)}
                     </Badge>
