@@ -25,7 +25,7 @@ export interface BankData {
 export const bankData: BankData[] = [
   {
     name: "TBC BANK",
-    appId: "TBC UZ: Online Mobile Banking (Google Play)",
+    appId: "TBC UZ: Online Mobile Banking ",
     totalRaters: 638936,
     ratings: { five: 562266, four: 15973, three: 12778, two: 15973, one: 31946 },
     averageRating: 4.78,
@@ -42,7 +42,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "ANOR BANK",
-    appId: "Anorbank (Google Play)",
+    appId: "Anorbank ",
     totalRaters: 416221,
     ratings: { five: 366276, four: 10405, three: 8324, two: 10405, one: 20811 },
     averageRating: 4.77,
@@ -59,7 +59,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "UZUM BANK",
-    appId: "Uzum Bank onlayn. O'zbekiston (Google Play)",
+    appId: "Uzum Bank onlayn. O'zbekiston ",
     totalRaters: 226757,
     ratings: { five: 188211, four: 6802, three: 5668, two: 7936, one: 18140 },
     averageRating: 4.61,
@@ -76,7 +76,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "BANK IPAK YO'LI",
-    appId: "Ipak Yuli Mobile: Onlayn Bank (Google Play)",
+    appId: "Ipak Yuli Mobile: Onlayn Bank ",
     totalRaters: 165653,
     ratings: { five: 145776, four: 4141, three: 3313, two: 4141, one: 8282 },
     averageRating: 4.78,
@@ -93,7 +93,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "ALOQABANK",
-    appId: "Zoomrad (Google Play)",
+    appId: "Zoomrad ",
     totalRaters: 108226,
     ratings: { five: 89830, four: 3246, three: 2705, two: 3787, one: 8658 },
     averageRating: 4.64,
@@ -110,7 +110,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "O'ZMILLIYBANK",
-    appId: "Milliy (Google Play)",
+    appId: "Milliy ",
     totalRaters: 47250,
     ratings: { five: 39219, four: 1417, three: 1181, two: 1653, one: 3780 },
     averageRating: 4.58,
@@ -127,7 +127,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "TENGE BANK",
-    appId: "Tenge24 (Google Play)",
+    appId: "Tenge24 ",
     totalRaters: 45011,
     ratings: { five: 40961, four: 1125, three: 675, two: 675, one: 1575 },
     averageRating: 4.83,
@@ -144,7 +144,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "ASAKABANK",
-    appId: "Asakabank (Google Play)",
+    appId: "Asakabank ",
     totalRaters: 44432,
     ratings: { five: 39103, four: 1110, three: 888, two: 1110, one: 2221 },
     averageRating: 4.75,
@@ -161,7 +161,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "O'ZSANOATQURILISHBANK",
-    appId: "SQB MOBILE (Google Play)",
+    appId: "SQB MOBILE ",
     totalRaters: 42232,
     ratings: { five: 35055, four: 1266, three: 1055, two: 1478, one: 3378 },
     averageRating: 4.66,
@@ -178,7 +178,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "XALQ BANKI",
-    appId: "xazna (Google Play)",
+    appId: "xazna ",
     totalRaters: 38415,
     ratings: { five: 28814, four: 1536, three: 1536, two: 1920, one: 4609 },
     averageRating: 4.35,
@@ -195,7 +195,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "KAPITALBANK",
-    appId: "Kapitalbank (Google Play)",
+    appId: "Kapitalbank ",
     totalRaters: 25127,
     ratings: { five: 22868, four: 628, three: 376, two: 376, one: 879 },
     averageRating: 4.81,
@@ -212,7 +212,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "OPEN BANK",
-    appId: "Open bank (Google Play)",
+    appId: "Open bank ",
     totalRaters: 24324,
     ratings: { five: 22137, four: 608, three: 364, two: 364, one: 851 },
     averageRating: 4.84,
@@ -229,7 +229,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "AVO BANK",
-    appId: "AVO — онлайн банк Узбекистана (Google Play)",
+    appId: "AVO — онлайн банк Узбекистана ",
     totalRaters: 21261,
     ratings: { five: 15947, four: 850, three: 850, two: 1063, one: 2551 },
     averageRating: 4.45,
@@ -246,7 +246,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "YANGI BANK",
-    appId: "Yangi — Онлайн-банк и финан (Google Play)",
+    appId: "Yangi — Онлайн-банк и финан ",
     totalRaters: 18735,
     ratings: { five: 15552, four: 562, three: 468, two: 655, one: 1498 },
     averageRating: 4.59,
@@ -263,7 +263,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "MIKROKREDITBANK",
-    appId: "Mavrid (Google Play)",
+    appId: "Mavrid ",
     totalRaters: 16964,
     ratings: { five: 15439, four: 424, three: 254, two: 254, one: 593 },
     averageRating: 4.8,
@@ -280,7 +280,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "TRASTBANK",
-    appId: "Trastpay (Google Play)",
+    appId: "Trastpay ",
     totalRaters: 14356,
     ratings: { five: 12636, four: 358, three: 287, two: 358, one: 717 },
     averageRating: 4.79,
@@ -297,7 +297,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "INFINBANK",
-    appId: "InfinBANK (Google Play)",
+    appId: "InfinBANK ",
     totalRaters: 13199,
     ratings: { five: 8583, four: 527, three: 659, two: 1055, one: 2375 },
     averageRating: 4.09,
@@ -314,7 +314,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "OCTOBANK",
-    appId: "Octo-Mobile (Google Play)",
+    appId: "Octo-Mobile ",
     totalRaters: 11164,
     ratings: { five: 8375, four: 446, three: 446, two: 558, one: 1339 },
     averageRating: 4.33,
@@ -331,7 +331,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "ASIA ALLIANCE BANK",
-    appId: "uz.tune.juicer (Google Play)",
+    appId: "uz.tune.juicer ",
     totalRaters: 10860,
     ratings: { five: 9885, four: 271, three: 162, two: 162, one: 380 },
     averageRating: 4.83,
@@ -348,7 +348,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "IPOTEKA-BANK",
-    appId: "Ipoteka bank (Google Play)",
+    appId: "Ipoteka bank ",
     totalRaters: 10803,
     ratings: { five: 5403, four: 756, three: 864, two: 1620, one: 2160 },
     averageRating: 3.82,
@@ -365,7 +365,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "OFB",
-    appId: "uz.ofbmobile.android (Google Play)",
+    appId: "uz.ofbmobile.android ",
     totalRaters: 9398,
     ratings: { five: 7804, four: 281, three: 234, two: 328, one: 751 },
     averageRating: 4.69,
@@ -382,7 +382,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "AGROBANK",
-    appId: "Agrobank Mobile (Google Play)",
+    appId: "Agrobank Mobile ",
     totalRaters: 7337,
     ratings: { five: 3671, four: 513, three: 586, two: 1100, one: 1467 },
     averageRating: 3.99,
@@ -399,7 +399,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "TURON BANK",
-    appId: "MyTuron (Google Play)",
+    appId: "MyTuron ",
     totalRaters: 6669,
     ratings: { five: 5871, four: 166, three: 133, two: 166, one: 333 },
     averageRating: 4.79,
@@ -416,7 +416,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "HAMKOR BANK",
-    appId: "Hamkor・онлайн банк Узбекистана (Google Play)",
+    appId: "Hamkor・онлайн банк Узбекистана ",
     totalRaters: 5237,
     ratings: { five: 3407, four: 209, three: 261, two: 418, one: 942 },
     averageRating: 4.12,
@@ -433,7 +433,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "BIZNESNI RIVOJLANTIRISH BANKI",
-    appId: "BRB (Google Play)",
+    appId: "BRB ",
     totalRaters: 3130,
     ratings: { five: 1566, four: 219, three: 250, two: 469, one: 626 },
     averageRating: 3.83,
@@ -450,7 +450,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "DAVR-BANK",
-    appId: "Davr mobile (Google Play)",
+    appId: "Davr mobile ",
     totalRaters: 2501,
     ratings: { five: 1626, four: 100, three: 125, two: 200, one: 450 },
     averageRating: 4.27,
@@ -467,7 +467,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "HAYOT BANK",
-    appId: "Hayot Bank (Google Play)",
+    appId: "Hayot Bank ",
     totalRaters: 1077,
     ratings: { five: 951, four: 26, three: 21, two: 26, one: 53 },
     averageRating: 4.74,
@@ -484,7 +484,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "APEX BANK",
-    appId: "APEX: Мобильный Онлайн-Банк (Google Play)",
+    appId: "APEX: Мобильный Онлайн-Банк ",
     totalRaters: 617,
     ratings: { five: 465, four: 24, three: 24, two: 30, one: 74 },
     averageRating: 4.41,
@@ -501,7 +501,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "KDB BANK O'ZBEKISTON",
-    appId: "KDB bank mobile (Google Play)",
+    appId: "KDB bank mobile ",
     totalRaters: 438,
     ratings: { five: 401, four: 10, three: 6, two: 6, one: 15 },
     averageRating: 4.8,
@@ -518,7 +518,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "UNIVERSAL BANK",
-    appId: "Universalbank (Google Play)",
+    appId: "Universalbank ",
     totalRaters: 398,
     ratings: { five: 202, four: 27, three: 31, two: 59, one: 79 },
     averageRating: 3.86,
@@ -535,7 +535,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "GARANT BANK",
-    appId: "Garant bank (Google Play)",
+    appId: "Garant bank ",
     totalRaters: 306,
     ratings: { five: 155, four: 21, three: 24, two: 45, one: 61 },
     averageRating: 3.65,
@@ -552,7 +552,7 @@ export const bankData: BankData[] = [
   },
   {
     name: "ZIRAAT BANK",
-    appId: "Ziraat Bank Mobile Uzbekistan (Google Play)",
+    appId: "Ziraat Bank Mobile Uzbekistan ",
     totalRaters: 19,
     ratings: { five: 8, four: 4, three: 2, two: 3, one: 2 },
     averageRating: 2.83,

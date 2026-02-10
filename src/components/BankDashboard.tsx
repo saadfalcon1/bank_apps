@@ -59,7 +59,7 @@ export function BankDashboard() {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 blur-3xl"></div>
             <div className="relative z-10">
               <h1 className="text-white mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all">
-                Google Play: bank mobil ilovalari tahlili
+                Google Play: Bank mobil ilovalari tahlili
               </h1>
               <p className="text-white">Bank mobil ilovalarining to‘liq statistikasi va professional tahlili</p>
             </div>
@@ -75,7 +75,7 @@ export function BankDashboard() {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-indigo-500/5 blur-3xl"></div>
             <div className="relative z-10">
               <h1 className="text-white mb-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-300 group-hover:to-indigo-300 transition-all">
-                App Store: bank mobil ilovalari tahlili
+                App Store: Bank mobil ilovalari tahlili
               </h1>
               <p className="text-white">Bank mobil ilovalarining to‘liq statistikasi va professional tahlili</p>
             </div>

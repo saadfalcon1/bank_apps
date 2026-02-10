@@ -1,7 +1,7 @@
 export const appStoreBankData = [
   {
     name: "TBC BANK",
-    appId: "TBC UZ: Online Mobile Banking (App store)",
+    appId: "TBC UZ: Online Mobile Banking ",
     totalRaters: 90215,
     rating5: 83901,
     rating4: 1804,
@@ -23,7 +23,7 @@ export const appStoreBankData = [
   },
   {
     name: "BANK IPAK YO'LI",
-    appId: "Ipak Yuli Mobile: Onlayn Bank (App store)",
+    appId: "Ipak Yuli Mobile: Onlayn Bank ",
     totalRaters: 98301,
     rating5: 91420,
     rating4: 1966,
@@ -45,7 +45,7 @@ export const appStoreBankData = [
   },
   {
     name: "UZUM BANK",
-    appId: "Uzum Bank online (App store)",
+    appId: "Uzum Bank online ",
     totalRaters: 69790,
     rating5: 64908,
     rating4: 1395,
@@ -67,7 +67,7 @@ export const appStoreBankData = [
   },
   {
     name: "O'ZSANOATQURILISHBANK",
-    appId: "SQB Mobile (App store)",
+    appId: "SQB Mobile ",
     totalRaters: 11862,
     rating5: 11034,
     rating4: 237,
@@ -89,7 +89,7 @@ export const appStoreBankData = [
   },
   {
     name: "ALOQABANK",
-    appId: "Zoomrad (App store)",
+    appId: "Zoomrad ",
     totalRaters: 19744,
     rating5: 18364,
     rating4: 394,
@@ -111,7 +111,7 @@ export const appStoreBankData = [
   },
   {
     name: "O'ZMILLIYBANK",
-    appId: "Milliy (App store)",
+    appId: "Milliy ",
     totalRaters: 13751,
     rating5: 11689,
     rating4: 275,
@@ -133,7 +133,7 @@ export const appStoreBankData = [
   },
   {
     name: "TENGE BANK",
-    appId: "Tenge24 (App store)",
+    appId: "Tenge24 ",
     totalRaters: 17822,
     rating5: 16576,
     rating4: 356,
@@ -155,7 +155,7 @@ export const appStoreBankData = [
   },
   {
     name: "BIZNESNI RIVOJLANTIRISH BANKI",
-    appId: "BRB (App store)",
+    appId: "BRB ",
     totalRaters: 7872,
     rating5: 7323,
     rating4: 157,
@@ -177,7 +177,7 @@ export const appStoreBankData = [
   },
   {
     name: "ASAKABANK",
-    appId: "Asakabank (App store)",
+    appId: "Asakabank ",
     totalRaters: 9505,
     rating5: 8080,
     rating4: 190,
@@ -199,7 +199,7 @@ export const appStoreBankData = [
   },
   {
     name: "OFB",
-    appId: "OFB (App store)",
+    appId: "OFB ",
     totalRaters: 5050,
     rating5: 4293,
     rating4: 101,
@@ -221,7 +221,7 @@ export const appStoreBankData = [
   },
   {
     name: "ANOR BANK",
-    appId: "Anorbank (App store)",
+    appId: "Anorbank ",
     totalRaters: 4488,
     rating5: 3817,
     rating4: 89,
@@ -230,8 +230,8 @@ export const appStoreBankData = [
     rating1: 359,
     averageRating: 4.62,
     horizontalScore: 92.4,
-    verticalScore: 2.37,
-    verticalScorePercent: 47.3,
+    verticalScore: 4.1,
+    verticalScorePercent: 82.0,
     volumeValue: 0,
     totalValue: 0,
     lastMonthDownloads: 132761,
@@ -243,7 +243,7 @@ export const appStoreBankData = [
   },
   {
     name: "OPEN BANK",
-    appId: "OpenBank UZ - Onlayn bank (App store)",
+    appId: "OpenBank UZ - Onlayn bank ",
     totalRaters: 14261,
     rating5: 13265,
     rating4: 285,
@@ -265,7 +265,7 @@ export const appStoreBankData = [
   },
   {
     name: "KAPITALBANK",
-    appId: "KAPITALBANK. Online (App store)",
+    appId: "KAPITALBANK. Online ",
     totalRaters: 5379,
     rating5: 4574,
     rating4: 107,
@@ -287,7 +287,7 @@ export const appStoreBankData = [
   },
   {
     name: "AGROBANK",
-    appId: "Agro bank mobile (App store)",
+    appId: "Agro bank mobile ",
     totalRaters: 5465,
     rating5: 4647,
     rating4: 109,
@@ -309,7 +309,7 @@ export const appStoreBankData = [
   },
   {
     name: "OCTOBANK",
-    appId: "Octo-Mobile (App store)",
+    appId: "Octo-Mobile ",
     totalRaters: 2143,
     rating5: 1824,
     rating4: 42,
@@ -331,7 +331,7 @@ export const appStoreBankData = [
   },
   {
     name: "AVO BANK",
-    appId: "AVO — Uzbekistan's Online Bank (App store)",
+    appId: "AVO — Uzbekistan's Online Bank ",
     totalRaters: 2040,
     rating5: 1021,
     rating4: 142,
@@ -353,7 +353,7 @@ export const appStoreBankData = [
   },
   {
     name: "TURON BANK",
-    appId: "Myturon (App store)",
+    appId: "Myturon ",
     totalRaters: 761,
     rating5: 649,
     rating4: 15,
@@ -375,7 +375,7 @@ export const appStoreBankData = [
   },
   {
     name: "TRASTBANK",
-    appId: "Trastpay (App store)",
+    appId: "Trastpay ",
     totalRaters: 3968,
     rating5: 3692,
     rating4: 79,
@@ -397,7 +397,7 @@ export const appStoreBankData = [
   },
   {
     name: "YANGI BANK",
-    appId: "Yangi – Online Banking & Loans (App store)",
+    appId: "Yangi – Online Banking & Loans ",
     totalRaters: 1474,
     rating5: 1255,
     rating4: 29,
@@ -419,7 +419,7 @@ export const appStoreBankData = [
   },
   {
     name: "XALQ BANKI",
-    appId: "xazna (App store)",
+    appId: "xazna ",
     totalRaters: 1310,
     rating5: 919,
     rating4: 52,
@@ -441,7 +441,7 @@ export const appStoreBankData = [
   },
   {
     name: "HAYOT BANK",
-    appId: "Hayot Bank (App store)",
+    appId: "Hayot Bank ",
     totalRaters: 355,
     rating5: 303,
     rating4: 7,
@@ -463,7 +463,7 @@ export const appStoreBankData = [
   },
   {
     name: "INFINBANK",
-    appId: "InfinBANK (App store)",
+    appId: "InfinBANK ",
     totalRaters: 960,
     rating5: 673,
     rating4: 38,
@@ -485,7 +485,7 @@ export const appStoreBankData = [
   },
   {
     name: "HAMKOR BANK",
-    appId: "Hamkor・онлайн банк Узбекистана (App store)",
+    appId: "Hamkor・онлайн банк Узбекистана ",
     totalRaters: 725,
     rating5: 364,
     rating4: 50,
@@ -507,7 +507,7 @@ export const appStoreBankData = [
   },
   {
     name: "DAVR-BANK",
-    appId: "Davr Mobile 2.0 (App store)",
+    appId: "Davr Mobile 2.0 ",
     totalRaters: 415,
     rating5: 292,
     rating4: 16,
@@ -529,7 +529,7 @@ export const appStoreBankData = [
   },
   {
     name: "MIKROKREDITBANK",
-    appId: "Mavrid (App store)",
+    appId: "Mavrid ",
     totalRaters: 211,
     rating5: 150,
     rating4: 8,
@@ -551,7 +551,7 @@ export const appStoreBankData = [
   },
   {
     name: "APEX BANK",
-    appId: "APEX: Mobile Online Bank (App store)",
+    appId: "APEX: Mobile Online Bank ",
     totalRaters: 129,
     rating5: 91,
     rating4: 5,
@@ -573,7 +573,7 @@ export const appStoreBankData = [
   },
   {
     name: "ASIA ALLIANCE BANK",
-    appId: "Alliance Pay (App store)",
+    appId: "Alliance Pay ",
     totalRaters: 166,
     rating5: 60,
     rating4: 21,
@@ -595,7 +595,7 @@ export const appStoreBankData = [
   },
   {
     name: "IPOTEKA-BANK",
-    appId: "Ipoteka Retail (App store)",
+    appId: "Ipoteka Retail ",
     totalRaters: 636,
     rating5: 160,
     rating4: 159,
@@ -617,7 +617,7 @@ export const appStoreBankData = [
   },
   {
     name: "KDB BANK O'ZBEKISTON",
-    appId: "KDB Mobile (App store)",
+    appId: "KDB Mobile ",
     totalRaters: 54,
     rating5: 21,
     rating4: 7,
@@ -639,7 +639,7 @@ export const appStoreBankData = [
   },
   {
     name: "UNIVERSAL BANK",
-    appId: "Universalbank (App store)",
+    appId: "Universalbank ",
     totalRaters: 49,
     rating5: 20,
     rating4: 6,
@@ -661,7 +661,7 @@ export const appStoreBankData = [
   },
   {
     name: "GARANT BANK",
-    appId: "Garant bank Узбекистан (App store)",
+    appId: "Garant bank Узбекистан ",
     totalRaters: 3,
     rating5: 3,
     rating4: 0,
@@ -683,7 +683,7 @@ export const appStoreBankData = [
   },
   {
     name: "ZIRAAT BANK",
-    appId: "Ziraat Mobil (App store)",
+    appId: "Ziraat Mobil ",
     totalRaters: 2,
     rating5: 2,
     rating4: 0,
