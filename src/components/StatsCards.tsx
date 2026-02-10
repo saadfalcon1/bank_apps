@@ -26,7 +26,7 @@ export function StatsCards({
 
   const stats = [
     {
-      title: `${prefix}: Jami bank ilovalari soni`,
+      title: `${prefix}: Jami bank mobil     ilovalari soni`,
       value: totalBanks.toLocaleString() + " ta",
       icon: Building2,
       gradient: "from-blue-500 via-blue-600 to-cyan-500",
@@ -61,7 +61,7 @@ export function StatsCards({
       value: (totalDownloads / 1000000).toFixed(1) + " M",
       icon: TrendingUp,
       gradient: "from-orange-500 via-orange-600 to-red-500",
-      detail: "Dekabr oyidagi yuklanishlar soni",
+      detail: "Yanvar oyidagi yuklanishlar soni",
     },
   ];
 
