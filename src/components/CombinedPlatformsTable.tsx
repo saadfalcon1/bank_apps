@@ -154,7 +154,6 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
 
               <TableHead className="text-white text-center">
                 <span className="text-green-300 text-xs md:text-sm lg:text-base font-semibold">
-                  (GP + AS) / 2
                 </span>
               </TableHead>
             </TableRow>
