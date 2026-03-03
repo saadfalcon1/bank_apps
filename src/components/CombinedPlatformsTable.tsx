@@ -132,7 +132,7 @@ export function CombinedPlatformsTable({ googlePlayData, appStoreData }: Combine
                 colSpan={1}
               >
                 <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg px-2 py-1.5 md:p-2 border border-green-400/30 flex justify-center">
-                  <SortButton field="averageScore" label="O'rtacha Ball" />
+                  <SortButton field="averageScore" label="Yakuniy ball" />
                 </div>
               </TableHead>
             </TableRow>
