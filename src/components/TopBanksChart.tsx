@@ -12,7 +12,7 @@ export function TopBanksChart({ data, platform = "googlePlay" }: TopBanksChartPr
   // Sort by finalScore in descending order (highest to lowest)
   const topBanks = [...data]
     .sort((a, b) => b.finalScore - a.finalScore)
-    .slice(0, 15)
+    .slice(0, 10)
     .map(bank => ({
       name: bank.name.length > 25 ? bank.name.substring(0, 25) + "..." : bank.name,
       yakuniyBall: bank.finalScore,
@@ -29,8 +29,8 @@ export function TopBanksChart({ data, platform = "googlePlay" }: TopBanksChartPr
   ];
 
   const platformTitle = platform === "appStore"
-    ? "App Store: Yakuniy ball bo'yicha top 15 bank mobil ilovasi"
-    : "Google Play: Yakuniy ball bo'yicha top 15 bank mobil ilovasi";
+    ? "App Store: Yakuniy ball bo'yicha TOP 10 bank mobil ilovasi"
+    : "Google Play: Yakuniy ball bo'yicha TOP 10 bank mobil ilovasi";
 
   return (
     <Card className="backdrop-blur-2xl bg-gradient-to-br from-white/5 to-white/10 border border-white/20 p-6 hover:border-white/30 transition-all duration-300">
